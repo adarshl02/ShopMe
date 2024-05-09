@@ -104,9 +104,7 @@ const Slide = ({ products, title }) => {
         itemClass="carousel-item-padding-40-px"
       >
 
-        {  
-        
-          products.map((product) => (
+        { products.map((product) => (
           //6_01
           <Link  to={`product/${product.id}`} style={{textDecoration:'none'}} >   
           <Box
