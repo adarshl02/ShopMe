@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL='http://localhost:8000';         //our react app is on 3000 but but are routing to 8000/signup
+const URL='/api';         //our react app is on 3000 but but are routing to 8000/signup
 
 export const authenticateSignup=async (data)=>{
     try{

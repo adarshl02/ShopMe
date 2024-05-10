@@ -57,7 +57,7 @@ const Cart = () => {
     const headers={
       "Content-Type":"application/json"
     }
-    const URL='http://localhost:8000';
+    const URL='/api';
 
     const response=await fetch(`${URL}/create-checkout-session`,{
       method:"POST",

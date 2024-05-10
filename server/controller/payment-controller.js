@@ -63,7 +63,7 @@ export const paymentResponse = (request, response) => {
                 post_res.on('end', function () {
                     let result = JSON.parse(res);
                     console.log(result);
-                    response.redirect('http://localhost:8000')
+                    response.redirect('http://localhost:8000http://localhost:8000')
                 });
             });
             post_req.write(post_data);
@@ -90,13 +90,14 @@ export const stripePayment=async(req,res)=>{
         quantity:"2"
         }
     ));
-
+const URL='http://localhost:3000';
+// const URL='hosted url';
     const session=await stripe.checkout.sessions.create({
         payment_method_types:["card"],
         line_items:lineItems,
         mode:"payment",
-        success_url:"http://localhost:3000/success",
-        cancel_url:"http://localhost:3000/cancel"
+        success_url:`${URL}/success`,
+        cancel_url:`${URL}/cancel`
     })
     res.json({id:session.id})
 }catch(err){
