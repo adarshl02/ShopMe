@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true })); //to remove whitespace in ur
 
 app.use(express.static(process.env.PUBLIC_DIR));
 
-app.use("/api", Router); //routes to api to localhost:8000/
+app.use("/", Router); //routes to api to localhost:8000/
 // app.use('*',(req,res)=>{
 //   res.sendFile(path.resolve(__dirname,'build','index.html'));
 // })
@@ -55,18 +55,7 @@ app.listen(PORT, () => {
 
 //to run server , write nodemon index.js
 
-export let paytmMerchantkey = process.env.PAYTM_MERCHANT_KEY;
-export let paytmParams = {};
-paytmParams["MID"] = process.env.PAYTM_MID;
-paytmParams["WEBSITE"] = process.env.PAYTM_WEBSITE;
-paytmParams["CHANNEL_ID"] = process.env.PAYTM_CHANNEL_ID;
-paytmParams["INDUSTRY_TYPE_ID"] = process.env.PAYTM_INDUSTRY_TYPE_ID;
-paytmParams["CUST_ID"] = process.env.PAYTM_CUST_ID;
-paytmParams["ORDER_ID"] = uuid();
-paytmParams["TXN_AMOUNT"] = "100";
-paytmParams["CALLBACK_URL"] = "/api/callback"; //apiOpens
-paytmParams["EMAIL"] = "adarsh@gmail.com";
-paytmParams["MOBILE_NO"] = "1243546423";
+
 
 
 //installing uuid for this
