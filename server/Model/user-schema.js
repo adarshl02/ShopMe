@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import passportLocalMongoose from 'passport-local-mongoose';
 
 const userSchema=new mongoose.Schema({
     firstname:{
@@ -21,16 +22,16 @@ const userSchema=new mongoose.Schema({
         trim:true,
         index:true,
     },
-    password:{
-        type:String,
-        required:true,
-        trim:true,
-    },
     phone:{
         type: Number,
         required:true,
-    }   
+    } ,
+    cart:{
+        type:Array
+    }  
 });
+
+userSchema.plugin(passportLocalMongoose);
 
 const User=mongoose.model('user',userSchema);  // created a collection 'Users' with userschema
 

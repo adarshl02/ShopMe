@@ -21,11 +21,11 @@ export const stripePayment=async(req,res)=>{
             },
             unit_amount:Math.round(product.price.cost*100),
         },
-        quantity:"2"
+        quantity:"1"
         }
     ));
-//const URL='http://localhost:3000';
- const URL='https://flipcart2-0.onrender.com';
+// const URL='http://localhost:3000';
+  const URL='https://flipcart2-0.onrender.com';
     const session=await stripe.checkout.sessions.create({
         payment_method_types:["card"],
         line_items:lineItems,

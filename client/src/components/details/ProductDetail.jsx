@@ -23,17 +23,15 @@ const StyledBadge = styled(Badge)`
   font-size: 15px;
 `;
 
-const Columntext=styled(TableRow)`
-  font-size:14px;
-  vertical-align:baseline;
-  &>td {
-    font-size:14px;
-    margin-top:10px;
+const Columntext = styled(TableRow)`
+  font-size: 14px;
+  vertical-align: baseline;
+  & > td {
+    font-size: 14px;
+    margin-top: 10px;
     border: none;
   }
-`
-
-
+`;
 
 const ProductDetail = ({ product }) => {
   const adURL =
@@ -99,7 +97,6 @@ const ProductDetail = ({ product }) => {
 
       <Table>
         <TableBody>
-
           <Columntext>
             <TableCell style={{ color: "#878787" }}>Delivery</TableCell>
             <TableCell style={{ fontWeight: 600 }}>
@@ -135,7 +132,6 @@ const ProductDetail = ({ product }) => {
             <TableCell style={{ color: "#878787" }}>Description</TableCell>
             <TableCell>{product.description}</TableCell>
           </Columntext>
-
         </TableBody>
       </Table>
     </>

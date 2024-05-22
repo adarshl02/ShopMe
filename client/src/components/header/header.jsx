@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import { useState } from "react";
 
 const StyledHeader = styled(AppBar)`
-  background: #2874f0;
+  background: linear-gradient(135deg,#2874f0,#030c32);
   height: 55px;
 `;
 const Component = styled(Link)`

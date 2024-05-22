@@ -6,16 +6,17 @@ import {getProducts} from '../../redux/actions/productActions';
 import {Link} from 'react-router-dom'
 
 const SearchContainer=styled(Box)`
-    background:#fff;
+    background:#f1f1f1;
     width:38%;
-    border-radius:2px;
-    margin-left:10px;
+    border-radius:6px;
+    margin-left:50px;
+    margin-right:50px;
     display:flex;
 `
 const InputSearchBase=styled(InputBase)`
     width:100%;
     padding-left:20px;
-    font-size:14px;
+    font-size:17px;
 `
 
 const SearchIconWrapper=styled(Box)`
@@ -26,7 +27,8 @@ display:flex;
 
 const ListWrapper=styled(List)`
      position :absolute;
-     background-color:white;
+     border-radius:4px;
+     background-color:#F6F6F6;
      margin-top:36px;
     color:#878787;
     width:inherit;
@@ -60,7 +62,7 @@ export default function Search(){
         <SearchContainer>
            <InputSearchBase
            placeholder='Search for products ,brands and more'
-           onChange={(e)=>getText(e.target.value)}
+           onChange={(e)=>{getText(e.target.value)}}
            value={text}
            /> 
            <SearchIconWrapper>

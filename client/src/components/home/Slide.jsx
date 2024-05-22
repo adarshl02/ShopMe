@@ -43,7 +43,7 @@ const DealText = styled(Typography)`
 `;
 const ViewAllButton = styled(Button)`
   margin-left: auto;
-  background-color: #2874f0;
+  background: linear-gradient(135deg,#2874f0,#5b548a);
   border-radius: 2px;
   font-size: 13px;
   font-weight: 600;
@@ -104,7 +104,7 @@ const Slide = ({ products, title }) => {
         itemClass="carousel-item-padding-40-px"
       >
 
-        { products.map((product) => (
+        { products && products.map((product) => (
           //6_01
           <Link  to={`product/${product.id}`} style={{textDecoration:'none'}} >   
           <Box
@@ -113,11 +113,11 @@ const Slide = ({ products, title }) => {
           >
             <Image src={product.url} alt="product" />
             <Text style={{ fontWeight: 600, color: "#212121" }}>
-              {product.title.shortTitle}{" "}
+              {product.title.shortTitle}
             </Text>
             <Text style={{ color: "green" }}>{product.discount} </Text>
             <Text style={{ color: "#212121", opacity: "0.6" }}>
-              {product.tagline}{" "}
+              {product.tagline}
             </Text>
           </Box>
           </Link>

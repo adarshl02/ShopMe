@@ -37,7 +37,7 @@ export default function Banner(){
             draggable={false}
             responsive={responsive}
             infinite={false}
-            autoPlay={false}
+            autoPlay={true}
             autoPlaySpeed={4000}
             keyBoardControl={true}
             showDots={false}

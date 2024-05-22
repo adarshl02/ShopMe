@@ -1,0 +1,11 @@
+.loader{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    z-index: 55;
+    backdrop-filter: blur(10px); /* Add backdrop-filter property for blur effect */
+  background-color: rgba(156, 156, 156, 0.116); /* Add background-color for semi-transparent background */
+
+}

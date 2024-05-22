@@ -1,15 +1,11 @@
-import {
-  Box,
-  Button,
-  Dialog,
-  TextField,
-  Typography,
-  styled,
-} from "@mui/material";
 
+import {Box,Button,Checkbox, Dialog,TextField,Typography, styled,} from "@mui/material";
 import { useState, useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
 import { authenticateLogin, authenticateSignup } from "../../service/api";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/actions/cartActions";
 
 const Component = styled(Box)`
   height: 70vh;
@@ -38,10 +34,8 @@ const Wrapper = styled(Box)`
   padding: 25px 35px;
   overflow: auto;
   flex: 1;
-  & > div,
-  & > button,
   & > p {
-    margin-top: 10px;
+    margin-top: 5px;
   }
 `;
 
@@ -55,7 +49,9 @@ const LoginButton = styled(Button)`
   }
   height: 48px;
   border-radius: 2px;
+  margin-top: 5px;
 `;
+
 const RequestOTP = styled(Button)`
   text-transform: none;
   background: #fff;
@@ -83,13 +79,19 @@ const CreateAccount = styled(Typography)`
   }
 `;
 
-const Error=styled(Typography)`
-   font-size:10px;
-   color:#ff6161;
-   line-height:0;
-   margin-top:10px;
-   font-weight:600;
-`
+const Error = styled(Typography)`
+  font-size: 10px;
+  color: #ff6161;
+  margin-top: 10px;
+  font-weight: 600;
+`;
+
+const CheckMe = styled(Box)`
+  font-size: 12px;
+  padding: 0px;
+  margin-top: 12px;
+  display: flex;
+`;
 
 const accountInitialValues = {
   login: {
@@ -113,19 +115,20 @@ const signupInitialValues = {
   phone: "",
 };
 
-const loginInitialValues={
-  username:"",
-  password:""
+const loginInitialValues = {
+  username: "",
+  password: "",
 };
 
 export default function LoginDialog({ open, setOpen }) {
   const [account, toggleAccount] = useState(accountInitialValues.login);
   const [signup, setSignup] = useState(signupInitialValues); //to store the Signup Data*
-  const [login,setLogin]=useState(loginInitialValues);
-  const [error,setError]=useState(false);
+  const [login, setLogin] = useState(loginInitialValues);
+  const [error, setError] = useState(false);
+  const [checked, setChecked] = useState(false);
 
-
-  const { setAccount } = useContext(DataContext);
+  const dispatch = useDispatch();
+  const {setAccount, setUserId } = useContext(DataContext);
 
   const handleClose = () => {
     setOpen(false);
@@ -143,27 +146,38 @@ export default function LoginDialog({ open, setOpen }) {
 
   const signupUser = async () => {
     let response = await authenticateSignup(signup); // exporting signup object which contain signup info
-    if (!response) return;
-
-    handleClose(); //response ana is good
-    setAccount(signup.firstname);
+    if (response.status === 200) {
+      handleClose(); //response ana is good
+      setAccount(signup.firstname);
+      setUserId(response.data._id);
+      toast.success("You're Successfully Signed Up");
+    } else {
+      toast.warn("Please try with different Credentials");
+    }
   };
 
-  const onValueChange=(event)=>{
-    setLogin({...login,[event.target.name]:event.target.value});
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+  const onValueChange = (event) => {
+    setLogin({ ...login, [event.target.name]: event.target.value });
   };
 
-  const loginUser=async()=>{
-    let response=await authenticateLogin(login);  //login frontend se jara hai and respnose backend se ara hai 
-    // console.log(response);
-    if(response.status===200){
+  const loginUser = async () => {
+    let response = await authenticateLogin(login); //login frontend se jara hai and respnose backend se ara hai
+    console.log(response);
+    if (response.status === 200) {
       handleClose();
-      setAccount(response.data.data.firstname);
+      setAccount(response.data.firstname);
+      setUserId(response.data._id);
+
+      dispatch(addToCart(123, response.data.cart, true));
+      toast.success(`Welcome back ${response.data.firstname}`);   
       setError(false);
-  }else{
+    } else {
       setError(true);
-  }
-}
+    }
+  };
 
   return (
     <Dialog
@@ -194,20 +208,20 @@ export default function LoginDialog({ open, setOpen }) {
                 name="username"
                 label="Enter Username"
               />
-              
+
               <TextField
                 variant="standard"
                 onChange={(event) => onValueChange(event)}
                 name="password"
+                type="password"
                 label="Enter Password"
               />
-              {error&&
-              <Error>Please enter valid username or password</Error> }
+              {error && <Error>Please enter valid username or password</Error>}
               <Text>
                 By continuing , you agree to Flipkart's Terms of Use and Privacy
                 Policy .
               </Text>
-              <LoginButton onClick={()=>loginUser()} >Login</LoginButton>
+              <LoginButton onClick={() => loginUser()}>Login</LoginButton>
               <Typography style={{ textAlign: "center" }}>OR</Typography>
               <RequestOTP>Request OTP</RequestOTP>
               <CreateAccount onClick={() => setSignUp()}>
@@ -255,7 +269,16 @@ export default function LoginDialog({ open, setOpen }) {
                 label="Enter Phone No. "
               />
 
-              <LoginButton onClick={() => signupUser()}>Continue</LoginButton>
+              <CheckMe>
+                <Checkbox checked={checked} onChange={handleChange} />
+                By continuing, I agree to terms of Use & Privacy Policy
+              </CheckMe>
+              <LoginButton
+                onClick={() => signupUser()}
+                style={{ opacity: checked ? "1" : "0.7" }}
+              >
+                Continue
+              </LoginButton>
             </Wrapper>
           )}
         </Box>

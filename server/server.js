@@ -8,10 +8,11 @@ import bodyParser from "body-parser"; // to get req.body comung from post api (n
 import { v4 as uuid } from "uuid"; //for generating unique id for user
 import path from 'path';
 import { fileURLToPath } from "url";
-
-
-const __filename=fileURLToPath(import.meta.url);
-const __dirname=path.dirname(__filename); 
+import session from "express-session"
+import passport from 'passport';
+import localStrategy from 'passport-local';
+import User from './Model/user-schema.js';
+import flash from 'express-flash';
 
 
 const app = express();
@@ -19,17 +20,41 @@ dotenv.config(); //to initialise dotenv file
 app.use(cors()); //so that localhost 8000 and 3000 both works
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true })); //to remove whitespace in url(can ignore)
+const __filename=fileURLToPath(import.meta.url);
+const __dirname=path.dirname(__filename); 
+
+const sessionOptions={
+  secret:"mysecret",
+  resave:false,
+  saveUninitialized:true,
+  cookie:{
+    expires:Date.now()+7*24*60*60*1000,
+    maxAge:7*24*60*60*1000,
+    httpOnly:true
+  }
+}
+
+
+
+app.use(flash());
+app.use(session(sessionOptions));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 app.use(express.static(process.env.PUBLIC_DIR));
 
-app.use("/", Router); //routes to api to localhost:8000/
-// app.use('*',(req,res)=>{
-//   res.sendFile(path.resolve(__dirname,'build','index.html'));
-// })
- app.use('*',(req,res)=>{
-   res.sendFile(path.resolve(__dirname,'build','index.html'));
- })
+
+app.use("/api", Router); //routes to api to localhost:8000/
+
+app.use('*',(req,res)=>{
+  res.sendFile(path.resolve(__dirname,'build','index.html'));
+})
 
 
 const PORT=process.env.PORT || 8000;
@@ -54,8 +79,6 @@ app.listen(PORT, () => {
 //if not used await inside this , this will execute first before Server is lisenig to 8000
 
 //to run server , write nodemon index.js
-
-
 
 
 //installing uuid for this

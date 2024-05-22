@@ -7,8 +7,8 @@
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemon server.js",
-    "built":"npm i",
+    "dev": "nodemon server.js",
+    "built": "npm i",
     "client-install": "cd client && npm install",
     "client-build": "cd client && npm run build",
     "heroku-postbuild": "npm run client-install && npm run client-build"
@@ -20,10 +20,15 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.0",
     "formidable": "^3.5.1",
     "https": "^1.0.0",
     "mongoose": "^8.2.4",
     "nodemon": "^3.1.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0",
     "stripe": "^15.5.0",
     "uuid": "^9.0.1"
   }

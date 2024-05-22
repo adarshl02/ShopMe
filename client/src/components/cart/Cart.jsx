@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
 import TotalBalance from "./TotalBalance";
 import EmptyCart from "./Emptycart";
-import { payUsingPaytm } from "../../service/api";
-import { post } from '../../utils/paytm';
 import {loadStripe} from '@stripe/stripe-js';
-import axios from "axios";
+import { useEffect, useState } from "react";
+import MoonLoader from "react-spinners/MoonLoader";
+import '../PreLoader/loader.css';
+import { addCart } from "../../service/api";
 
 const Container = styled(Grid)(({theme})=>({
     padding: '30px 135px',
@@ -44,8 +45,12 @@ const LeftComponent = styled(Grid)(({ theme }) => ({
 }))
 
 const Cart = () => {
-  const { cartItems } = useSelector((state) => state.cart);
-  console.log(cartItems);
+  const { cartItems,loading} = useSelector((state) => state.cart);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
+
+  useEffect(() => {
+    setIsLoading(loading); // Update loading state
+  }, [loading]);
 
   const buyNow=async()=>{
     const stripe=await loadStripe("pk_test_51PDV4OSJ3FiDzTUunKg1cfflvxPseKNX1J0NFVsoJtdnAk2L07hHGINpGtVMOeDgGPeljzdGWqBShpPCPq2UEuhP00LpZUKqZJ");
@@ -69,16 +74,22 @@ const Cart = () => {
     const result=stripe.redirectToCheckout({
       sessionId:session.id
     })
-    // let response=await payUsingPaytm({amount:500,email:'adarh@gmail.com'});
-    // let information={
-    //     action:'https://securegw-stage.paytm.in/order/process',
-    //     params:response
-    // }
-    // post(information);
 }
   return (
-    <>
-      {cartItems.length ? (
+    <>  
+     { isLoading ? ( // Render loader if isLoading is true
+      <div className="loader">
+         <MoonLoader
+        color={ '#2874f0'}
+        loading={isLoading}
+        size={50}
+        data-testid="loader"
+      />
+      </div>
+       
+      ) : (
+    
+      cartItems.length ? (
         <Container container>
           <LeftComponent item lg={9} md={9} sm={12} xs={12}>
             <Header>
@@ -98,7 +109,7 @@ const Cart = () => {
         </Container>
       ) : (
         <EmptyCart />
-      )}
+      ) ) }
     </>
   );
 };
