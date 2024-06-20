@@ -1,5 +1,7 @@
 import axios from 'axios';
-const URL='/api';         //our react app is on 3000 but but are routing to 8000/signup
+const URL='';         //our react app is on 3000 but but are routing to 8000/signup
+
+
 
 export const authenticateSignup=async (data)=>{
     try{
@@ -29,6 +31,7 @@ export const authenticateLogin=async (data)=>{
 }
 
     export const addCartTodb=async(cartItems,userId)=>{
+        
         try{
             const data={
                 cartItems:cartItems,
@@ -41,15 +44,25 @@ export const authenticateLogin=async (data)=>{
         }
     }
 
-// export const addCart=async(data,id)=>{
-//     try{
-//         const obj={
-//             _id:id,
-//             cartItems:data
-//         }
-//         return await axios.put(`${URL}/cart`,obj);
-//     }catch(error){
-//         console.log("Wrong data from frontend",error);
-//         return error.response;
-//     }
-// }
+    export const logout = async () => {
+
+        try {
+            const { data } = await axios.get('/logout', { withCredentials: true })
+        } catch (error) {
+            throw error
+        }
+    };
+
+    export const CartToOrder=async(userId,cartItems)=>{
+        try{
+            const data={
+                cartItems:cartItems,
+                userId:userId
+            }
+            return await axios.put(`${URL}/cartToOrder`,data);
+        }catch(error){
+            console.log("Wrong data from frontend",error);
+            return error.response;
+        }
+    }
+

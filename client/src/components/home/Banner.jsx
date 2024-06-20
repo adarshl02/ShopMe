@@ -48,7 +48,7 @@ export default function Banner(){
         >
             {
                 bannerData.map(data=> (
-                   <Image src={data.url} alt="banner" />
+                   <Image src={data.url} alt="banner" key={data.id} />
                 )
                 )}
         </Carousel>

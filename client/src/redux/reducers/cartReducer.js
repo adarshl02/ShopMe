@@ -13,6 +13,7 @@ export const cartReducer=(state={cartItems:[],loading:false},action)=>{
         return{...state,loading:true};
         
        case actionType.ADD_TO_CART_INITIALS:
+        if(state.cartItems.length===0){
         const arr = action.payload;
         const items = arr.map((el) => {
           return {
@@ -22,6 +23,9 @@ export const cartReducer=(state={cartItems:[],loading:false},action)=>{
         return {
           ...state,
           cartItems: [...state.cartItems, ...items],loading:false}
+        }else{
+            return {...state,cartItems:[...state.cartItems],loading:false}
+        }
 
        case actionType.ADD_TO_CART:
           const item=action.payload;

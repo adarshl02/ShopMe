@@ -9,12 +9,13 @@ import './footer.css';
 const Container = styled(Box)`
   display: flex;
   background-color: #2c2c2c;
-  height: 40vh;
+  height: auto;
   width: 100%;
+   position: relative;
+   margin-top:10rem;
   bottom: 0;
-  margin-top:170px;
 `;
-const InnerBox = styled("Box")`
+const InnerBox = styled(Box)`
   opacity: 0.5;
 `;
 const Wrapper = styled(Box)`
@@ -119,7 +120,7 @@ export default function Footer() {
             <Typography>Outer Ring Road</Typography>
             <Typography>Karnataka , India</Typography>
             <Typography>
-              Telephone: <span style={{ color: "#90caf9" }}>044-45614700</span>
+              Telephonec: <span style={{ color: "#90caf9" }}>044-45614700</span>
             </Typography>
           </Wrapper>
         </Box>

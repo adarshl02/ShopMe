@@ -1,17 +1,17 @@
-import { Typography, Menu, MenuItem, Box, styled } from '@mui/material';
-import { useState } from 'react';
+import { Typography, Menu, MenuItem, Box, styled, Badge } from '@mui/material';
+import {  useState } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartReset } from '../../redux/actions/cartActions';
-import { addCartTodb } from '../../service/api';
+import { addCartTodb, logout } from '../../service/api';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Link } from 'react-router-dom';
 
 
 const Component=styled(Menu)`
-  margin-top:5px;
 `
 const Logout=styled(Typography)`
   font-size:14px;
@@ -19,10 +19,18 @@ const Logout=styled(Typography)`
 `
 const ProfileBox=styled(Box)`
   display:flex;
-  &>p{
-    margin-right:5px
-  }
+  justify-content: space-between;
 `
+const Container=styled(Link)(({theme})=>({
+  display:'flex',
+  marginTop:3,
+  textDecoration:'none',
+  color:'inherit', 
+  [theme.breakpoints.down('md')]:{
+      display:'block'
+  }
+
+}));
 
 
 const Profile = ({ account , setAccount,userId}) => {
@@ -35,18 +43,27 @@ const Profile = ({ account , setAccount,userId}) => {
       setOpen(event.currentTarget);
      };
 
-    const logoutUser=async()=>{
-      setAccount(''); 
+    const logoutUser=async()=>{ 
       setOpen(false);
-      toast.warn("You're logged Out");
-      let response = await addCartTodb(cartItems,userId);
-      dispatch(cartReset());
+     
+      try {
+        await logout()
+        toast.warn("You're logged Out");
+        dispatch(cartReset()); 
+        setAccount(()=>null)
+      } catch (error) {
+        alert(error.message)
+      }
+    }
+
+    const switchToOrder = () => {
+      setOpen(false);
     }
     
   return (
     <>
-      <ProfileBox onClick={handleClick} style={{marginTop:3,marginRight:30,cursor:'pointer'}}>
-       <Typography> {account}</Typography> 
+      <ProfileBox onClick={handleClick} style={{cursor:'pointer'}}>
+       <Typography> {account.username}</Typography> 
         <AccountCircleIcon/> 
       </ProfileBox>
       
@@ -59,9 +76,13 @@ const Profile = ({ account , setAccount,userId}) => {
         <LogoutIcon color="primary" fontSize='small' />
           <Logout > Logout</Logout>
         </MenuItem>
-        <MenuItem onClick={()=>{ logoutUser(); }}>
+        <MenuItem onClick={()=>{switchToOrder()}}>
+          <Container to="/myorders" >
+          <Badge variant="dot" color="secondary">
           <ShoppingBagIcon color="primary" fontSize='small' />
+          </Badge>
           <Logout > Orders</Logout>
+          </Container>
         </MenuItem>
       </Component>
     </>

@@ -22,9 +22,12 @@ const SmallText = styled(Typography)`
 
 const Remove = styled(Button)`
   margin-top: 20px;
-  font-size: 16px;
-  color: #000;
-  font-weight: 600;
+  background:#000;
+  padding: 5px 15px; 
+  font-size: 13px;
+  &:hover{
+    background:#3b3b3b;
+  }
 `;
 
 const CartItem = ({ item }) => {
@@ -64,7 +67,7 @@ const CartItem = ({ item }) => {
             {item.price.discount}
           </Box>
         </Typography>
-        <Remove onClick={()=>removeItemFromCart(item.id)}>Remove</Remove>
+        <Remove variant="contained"  onClick={()=>removeItemFromCart(item.id)}>Remove</Remove>
       </Box>
     </Component>
   );

@@ -30,7 +30,7 @@ export default function NavBar(){
         <Box style={{ backgroundColor:'#fff'}}>
         <Component>{
             navData.map(data =>(
-                <Container>
+                <Container  key={data.id}  >
                     <img src={data.url} alt='nav' style={{width:64}}/>
                     <Text>{data.text}</Text>
                     </Container>

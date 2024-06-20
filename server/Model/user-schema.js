@@ -2,17 +2,21 @@ import mongoose from "mongoose";
 import passportLocalMongoose from 'passport-local-mongoose';
 
 const userSchema=new mongoose.Schema({
+    googleId: {
+        type: String,
+       
+    },
     firstname:{
         type:String,
-        required:true,
+        
     },
     lastname:{
         type:String,
-        required:true,
+       
     },
     username:{
         type : String,
-        required:true,
+         required:true,
         trim:true,
         index:true,   //mongodb indexing laga de
     },
@@ -24,11 +28,13 @@ const userSchema=new mongoose.Schema({
     },
     phone:{
         type: Number,
-        required:true,
     } ,
     cart:{
         type:Array
-    }  
+    } ,
+    orders:{
+        type:Array
+    } 
 });
 
 userSchema.plugin(passportLocalMongoose);

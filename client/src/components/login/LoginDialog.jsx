@@ -6,6 +6,7 @@ import { authenticateLogin, authenticateSignup } from "../../service/api";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
+import axios from "axios";
 
 const Component = styled(Box)`
   height: 70vh;
@@ -53,10 +54,11 @@ const LoginButton = styled(Button)`
 `;
 
 const RequestOTP = styled(Button)`
-  text-transform: none;
+   text-transform: none;
   background: #fff;
   color: #2874f0;
   height: 48px;
+  font-size: 16px;
   border-radius: 2px;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 /0.4);
   // box-shadow:0  2px 4px rgba(0,0,0,.12), 0 -2px 4px rgba(0,0,0,.08);
@@ -121,6 +123,7 @@ const loginInitialValues = {
 };
 
 export default function LoginDialog({ open, setOpen }) {
+  
   const [account, toggleAccount] = useState(accountInitialValues.login);
   const [signup, setSignup] = useState(signupInitialValues); //to store the Signup Data*
   const [login, setLogin] = useState(loginInitialValues);
@@ -128,7 +131,7 @@ export default function LoginDialog({ open, setOpen }) {
   const [checked, setChecked] = useState(false);
 
   const dispatch = useDispatch();
-  const {setAccount, setUserId } = useContext(DataContext);
+  const {setExtra,extra} = useContext(DataContext);
 
   const handleClose = () => {
     setOpen(false);
@@ -148,9 +151,8 @@ export default function LoginDialog({ open, setOpen }) {
     let response = await authenticateSignup(signup); // exporting signup object which contain signup info
     if (response.status === 200) {
       handleClose(); //response ana is good
-      setAccount(signup.firstname);
-      setUserId(response.data._id);
       toast.success("You're Successfully Signed Up");
+      setExtra(!extra);
     } else {
       toast.warn("Please try with different Credentials");
     }
@@ -165,19 +167,20 @@ export default function LoginDialog({ open, setOpen }) {
 
   const loginUser = async () => {
     let response = await authenticateLogin(login); //login frontend se jara hai and respnose backend se ara hai
-    console.log(response);
     if (response.status === 200) {
       handleClose();
-      setAccount(response.data.firstname);
-      setUserId(response.data._id);
-
-      dispatch(addToCart(123, response.data.cart, true));
-      toast.success(`Welcome back ${response.data.firstname}`);   
+      toast.success(`Welcome back ${response.data.username}`);   
       setError(false);
+      setExtra(true);
     } else {
-      setError(true);
+      setError(!extra);
     }
   };
+  //const URL='http://localhost:3000';
+   const URL='https://flipcart2-0.onrender.com';
+  const googleAuth=async()=>{
+     window.open(`${URL}/api/auth/google/callback`, "_self");
+  }
 
   return (
     <Dialog
@@ -223,7 +226,7 @@ export default function LoginDialog({ open, setOpen }) {
               </Text>
               <LoginButton onClick={() => loginUser()}>Login</LoginButton>
               <Typography style={{ textAlign: "center" }}>OR</Typography>
-              <RequestOTP>Request OTP</RequestOTP>
+              <RequestOTP  onClick={googleAuth} > <img src="/google.png" alt="google"/> Sign in with Google</RequestOTP>
               <CreateAccount onClick={() => setSignUp()}>
                 New to Flipkart? Create an account
               </CreateAccount>

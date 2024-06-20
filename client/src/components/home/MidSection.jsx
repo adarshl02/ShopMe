@@ -19,9 +19,9 @@ const Image=styled('img')(({theme})=>({
 }));
 
 const ImageURL = [
-    'https://rukminim1.flixcart.com/flap/960/960/image/2f30db9425df5cec.jpg?q=50',
-    'https://rukminim1.flixcart.com/flap/960/960/image/084789479074d2b2.jpg',
-    'https://rukminim1.flixcart.com/flap/960/960/image/1ce0c4c1fb501b45.jpg?q=50'
+    {url:'https://rukminim1.flixcart.com/flap/960/960/image/2f30db9425df5cec.jpg?q=50',id:1},
+    {url:'https://rukminim1.flixcart.com/flap/960/960/image/084789479074d2b2.jpg',id:2},
+    {url:'https://rukminim1.flixcart.com/flap/960/960/image/1ce0c4c1fb501b45.jpg?q=50',id:3}
 ];
 
 const MidSection=()=>{
@@ -29,11 +29,11 @@ const MidSection=()=>{
     return (
         <>
         {/* full screen divided into 12 parts  */}
-        <Wrapper container lg={12} md={12} sm={12} xs={12}>
+        <Wrapper container >
             {
                 ImageURL.map(image=>(
-                    <Grid item lg={4} md={4} sm={12} xm={12}>   
-                    <img src={image} alt="loading" style={{width:'100%'}}/>
+                    <Grid item lg={4} md={4} sm={12} xm={12} key={image.id} >   
+                    <img src={image.url} alt="loading" style={{width:'100%'}}  />
                     </Grid>
                 ))
                

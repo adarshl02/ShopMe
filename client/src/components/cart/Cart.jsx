@@ -1,21 +1,30 @@
-import { Box, Button, Grid, Typography, styled } from "@mui/material";
-import { useSelector } from "react-redux";
+import {
+  Box,
+  Button,
+  Grid,
+  TextField,
+  Typography,
+  styled,
+} from "@mui/material";
+import {  useSelector } from "react-redux";
 import CartItem from "./CartItem";
 import TotalBalance from "./TotalBalance";
 import EmptyCart from "./Emptycart";
-import {loadStripe} from '@stripe/stripe-js';
-import { useEffect, useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { useContext, useEffect, useState } from "react";
 import MoonLoader from "react-spinners/MoonLoader";
-import '../PreLoader/loader.css';
-import { addCart } from "../../service/api";
+import "../PreLoader/loader.css";
+import LocalActivityIcon from "@mui/icons-material/LocalActivity";
+import { CartToOrder, addCart } from "../../service/api";
+import { DataContext } from "../../context/DataProvider";
 
-const Container = styled(Grid)(({theme})=>({
-    padding: '30px 135px',
-    [theme.breakpoints.down('md')]:{
-        padding:'15px 0'
-    }
-}))
- 
+
+const Container = styled(Grid)(({ theme }) => ({
+  padding: "30px 135px",
+  [theme.breakpoints.down("md")]: {
+    padding: "15px 0",
+  },
+}));
 
 const Header = styled(Box)`
   padding: 15px 24px;
@@ -34,62 +43,95 @@ const StyledButton = styled(Button)`
   width: 250px;
   height: 51px;
   border-radius: 2px;
+  &:hover {
+    background-color: #f8894c;
+  }
 `;
 
 const LeftComponent = styled(Grid)(({ theme }) => ({
-    paddingRight:15,
-    [theme.breakpoints.down('md')]:{
-        marginBottom :15
-    }
+  paddingRight: 15,
+  [theme.breakpoints.down("md")]: {
+    marginBottom: 15,
+  },
+}));
 
-}))
+const PromoWrapper = styled(Box)`
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  & > * {
+    margin-bottom: 10px;
+  }
+`;
+
+const PromoInner = styled(Box)`
+  padding: 10px;
+  background: #fff;
+  color: #FE9900;
+`;
+const SubmitButton = styled(Button)`
+  background: #000;
+  color: #fff;
+  &:hover {
+    background: #3b3b3b;
+  }
+`;
 
 const Cart = () => {
-  const { cartItems,loading} = useSelector((state) => state.cart);
+  const {userId}=useContext(DataContext);
+  const { cartItems, loading } = useSelector((state) => state.cart);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
+  
 
   useEffect(() => {
     setIsLoading(loading); // Update loading state
   }, [loading]);
 
-  const buyNow=async()=>{
-    const stripe=await loadStripe("pk_test_51PDV4OSJ3FiDzTUunKg1cfflvxPseKNX1J0NFVsoJtdnAk2L07hHGINpGtVMOeDgGPeljzdGWqBShpPCPq2UEuhP00LpZUKqZJ");
-    
-    const body={
-      products: cartItems
-    }
+  const buyNow = async () => {
+    const stripe = await loadStripe(
+      "pk_test_51PDV4OSJ3FiDzTUunKg1cfflvxPseKNX1J0NFVsoJtdnAk2L07hHGINpGtVMOeDgGPeljzdGWqBShpPCPq2UEuhP00LpZUKqZJ"
+    );
 
-    const headers={
-      "Content-Type":"application/json"
-    }
-    const URL='/api';
+    const body = {
+      products: cartItems,
+    };
 
-    const response=await fetch(`${URL}/create-checkout-session`,{
-      method:"POST",
-      headers:headers,
-      body:JSON.stringify(body)
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const URL = "";
+
+    const response = await fetch(`${URL}/create-checkout-session`, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(body),
     })
+   
+    const session = await response.json();
 
-    const session=await response.json();
-    const result=stripe.redirectToCheckout({
-      sessionId:session.id
-    })
-}
+   // window.open(session.url, "_blank");
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id,
+     
+    });
+
+    let res=await CartToOrder(userId,cartItems);
+
+
+  };
   return (
-    <>  
-     { isLoading ? ( // Render loader if isLoading is true
-      <div className="loader">
-         <MoonLoader
-        color={ '#2874f0'}
-        loading={isLoading}
-        size={50}
-        data-testid="loader"
-      />
-      </div>
-       
-      ) : (
-    
-      cartItems.length ? (
+    <>
+      {isLoading ? ( // Render loader if isLoading is true
+        <div className="loader">
+          <MoonLoader
+            color={"#2874f0"}
+            loading={isLoading}
+            size={50}
+            data-testid="loader"
+          />
+        </div>
+      ) : cartItems.length ? (
         <Container container>
           <LeftComponent item lg={9} md={9} sm={12} xs={12}>
             <Header>
@@ -97,19 +139,36 @@ const Cart = () => {
             </Header>
 
             {cartItems.map((item) => (
-              <CartItem item={item} />
+              <CartItem item={item} key={item.id}  />
             ))}
             <ButtonWrapper>
-              <StyledButton onClick={buyNow}>Place Order</StyledButton>
+              <StyledButton onClick={buyNow}>Proceed to Checkout</StyledButton>
             </ButtonWrapper>
           </LeftComponent>
           <Grid item lg={3} md={3} sm={12} xs={12}>
             <TotalBalance cartItems={cartItems} />
+            <PromoWrapper>
+              <Box style={{ display: "flex", alignItems: "center" }}>
+                <PromoInner>
+                  If you have Promo Code , &nbsp; Enter it here &nbsp;{" "}
+                  <LocalActivityIcon />{" "}
+                </PromoInner>
+              </Box>
+
+                <TextField
+                  id="filled-basic"
+                  label="Promo Code"
+                  variant="filled"
+                  color="success"
+                />
+
+              <SubmitButton>Submit</SubmitButton>
+            </PromoWrapper>
           </Grid>
         </Container>
       ) : (
         <EmptyCart />
-      ) ) }
+      )}
     </>
   );
 };

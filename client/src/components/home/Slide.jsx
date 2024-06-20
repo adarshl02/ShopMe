@@ -2,7 +2,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Box, Typography, Button, styled, Divider } from "@mui/material";
 import Countdown from "react-countdown";
-import {Link} from 'react-router-dom'; //6
+import { Link } from 'react-router-dom'; //6
 
 const responsive = {
   desktop: {
@@ -59,13 +59,13 @@ const Text = styled(Typography)`
   margin-top: 5px;
 `;
 
-const Slide = ({ products, title }) => {
+const Slide = ({ products = [], title }) => { // Default to empty array
   const timerURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg";
 
   const renderer = ({ hours, minutes, seconds }) => {
     return (
-      <Box variant="span">
+      <Box component="span">
         {hours}:{minutes}:{seconds} Left
       </Box>
     );
@@ -75,7 +75,7 @@ const Slide = ({ products, title }) => {
     <Component>
       <Deal>
         <DealText>{title}</DealText>
-        {title === "Deal of the day" ? (
+        {title === "Deal of the day" && (
           <Timer>
             <img
               src={timerURL}
@@ -84,8 +84,6 @@ const Slide = ({ products, title }) => {
             />
             <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
           </Timer>
-        ) : (
-          ""
         )}
         <ViewAllButton variant="contained">View All</ViewAllButton>
       </Deal>
@@ -103,23 +101,21 @@ const Slide = ({ products, title }) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
-
-        { products && products.map((product) => (
-          //6_01
-          <Link  to={`product/${product.id}`} style={{textDecoration:'none'}} >   
-          <Box
-            textAlign="center"
-            style={{ padding: "25px 15px", margin: "10px" }}
-          >
-            <Image src={product.url} alt="product" />
-            <Text style={{ fontWeight: 600, color: "#212121" }}>
-              {product.title.shortTitle}
-            </Text>
-            <Text style={{ color: "green" }}>{product.discount} </Text>
-            <Text style={{ color: "#212121", opacity: "0.6" }}>
-              {product.tagline}
-            </Text>
-          </Box>
+        { Array.isArray(products) && products.map((product) => (
+          <Link to={`product/${product.id}`} style={{ textDecoration: 'none' }} key={product.id}>
+            <Box
+              textAlign="center"
+              style={{ padding: "25px 15px", margin: "10px" }}
+            >
+              <Image src={product.url} alt="product" />
+              <Text style={{ fontWeight: 600, color: "#212121" }}>
+                {product.title.shortTitle}
+              </Text>
+              <Text style={{ color: "green" }}>{product.discount} </Text>
+              <Text style={{ color: "#212121", opacity: "0.6" }}>
+                {product.tagline}
+              </Text>
+            </Box>
           </Link>
         ))}
       </Carousel>

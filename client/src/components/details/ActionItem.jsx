@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { DataContext } from "../../context/DataProvider";
 import LoginDialog from "../login/LoginDialog";
 import { loadStripe } from "@stripe/stripe-js";
+import { CartToOrder } from "../../service/api";
 
 
 const LeftContainer = styled(Box)(({ theme }) => ({
@@ -36,7 +37,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 const ActionItem = ({ product }) => {
-  const { account, setAccount } = useContext(DataContext);
+  const { account, setAccount,userId } = useContext(DataContext);
   const [open, setOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
@@ -50,7 +51,6 @@ const ActionItem = ({ product }) => {
   const addItemToCart = async() => {
     //this to cartActions to cartReducer
     if (!account) {
-      //  console.log(productArray);
       toast.warn("You must be logged in");
       setOpen(true);
     } else {
@@ -88,12 +88,13 @@ const ActionItem = ({ product }) => {
       const result = stripe.redirectToCheckout({
         sessionId: session.id,
       });
+      let res=await CartToOrder(userId,productArray);
     }
   };
 
   return (
     <LeftContainer>
-      <Box style={{ padding: "15px 20px;", border: "1px solid #f0f0f0" }}>
+      <Box style={{ padding:' 15px 20px', border: "1px solid #f0f0f0" }}>
         <Image src={product.detailUrl} />
       </Box>
       <StyledButton

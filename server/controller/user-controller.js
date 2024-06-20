@@ -1,38 +1,37 @@
 import User from '../Model/user-schema.js';
 
-export const userSignup=async(req,res)=>{     //req comes from frontend &response we are sending
-    try{
-         //console.log(req.body);
-        // const exist=await User.findOne({username: req.body.username});
-        //  if (exist) {
-        //      return res.status(401).json({message:'Username already exist'});
-        //  }
-        const {firstname,lastname,username,email,phone,password}=req.body;
-         const newUser=new User({firstname,lastname,username,email,phone,cart:[]});
-         const registeredUser=await User.register(newUser,password);        //
+export const userSignup = async (req, res) => {
+    try {
+        const { firstname, lastname, username, email, phone, password } = req.body;
 
-        return res.status(200).json(registeredUser);   // (this is required response which we sending to frontend)
+        // Create a new user instance
+        const newUser = new User({ firstname, lastname, username, email, phone });
 
-    }catch(error){
-        return res.status(500).json({message:error.message});   //internal server error
+        // Register the user
+        const registeredUser = await User.register(newUser, password);
+
+        // Automatically log in the user after registration
+        req.login(registeredUser, (err) => {
+            if (err) {
+                return res.status(500).json({ message: "Login after signup failed." });
+            }
+
+            return res.status(200).json(registeredUser);
+        });
+
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
     }
-}
+};
 
 export const userLogin=async(req,res)=>{
     try{
-        // const username=req.body.username;
-        // const password=req.body.password;
 
-        // let user=await User.findOne({username:username,password:password});
         if(req.flash('error').length>0){ 
             return res.status(500).json(null);
-        }
-        // if(user){
-           
+        }           
            return res.status(200).json(req.user);
-        // }else{
-        //     return res.status(401).json('Invalid login');
-        // }
+
 
     }catch(error){
         res.status(500).json({'Error':error.message});
@@ -41,7 +40,7 @@ export const userLogin=async(req,res)=>{
 export const userCart = async (req, res) => {
     try {
       let { cartItems, userId } = req.body;
-      let user = await User.findByIdAndUpdate(userId, { cart: [] });                // Empty the cart array
+      let user = await User.findByIdAndUpdate(userId, { cart: [] },{runValidators:true} );                // Empty the cart array
       user.cart = cartItems;                                                 // Assign the new cartItems array
       await user.save();                                                     // Save the changes
       return res.status(200).json(cartItems);
@@ -49,6 +48,32 @@ export const userCart = async (req, res) => {
       res.status(500).json({ 'Error': error.message });
     }
   }
+
+export const cartOrder=async (req,res)=>{
+    try{
+        let {userId,cartItems}=req.body;
+
+        const itemsWithOrderDate = cartItems.map(item => ({
+            ...item,
+            orderDate: formatDate(Date.now())  // Adding orderDate as Date.now()
+        }));
+
+        let user = await User.findByIdAndUpdate(userId, { $push:{ orders: {$each:itemsWithOrderDate}} },{runValidators:true});
+        user.cart=[];
+        await user.save(); 
+        return res.status(200).json();
+    }catch(error){
+        res.status(500).json({ 'Error': error.message });
+    }
+}
+function formatDate(timestamp) {
+    const date = new Date(timestamp);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Months are zero indexed
+    const year = date.getFullYear();
+
+    return `${day}, ${month}, ${year}`;
+}
   
 
   
