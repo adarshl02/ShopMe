@@ -14,19 +14,21 @@ const DataProvider=({children})=>{
 
     useEffect(()=>{
        
-        axios.get('/profile',{
+        axios.get('/api/profile',{
             withCredentials: true  //the request will include the necessary cookies or credentials, allowing the server to identify and authenticate the user making the request.
         })
         .then(({data})=>{
-            console.log(data);  // all user data 
+            
+            console.log(data) // all user data 
+            dispatch(addToCart(123,data.cart, true));
             setAccount(data);
             setUserId(data._id);
-            dispatch(addToCart(123,data.cart, true));
+          
         })
         .catch(e=>{
             console.log(e.response.data.message);
         })
-    },[extra])
+    },[])
 
     return (
         <DataContext.Provider value={{

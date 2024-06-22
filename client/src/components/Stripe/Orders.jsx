@@ -1,9 +1,10 @@
 import { Box, Grid, Typography, styled } from "@mui/material";
-import { useSelector } from "react-redux";
 import { OrderList } from "./OrderList";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Emptyorders from "./Emptyorders";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
+import { DataContext } from "../../context/DataProvider";
 
 const Header = styled(Box)`
 background: #fff;
@@ -25,22 +26,10 @@ background: #fff;
 `;
 
 const Orders = () => {
-   const [orders,setOrders]=useState([]);
-//   const { cartItems } = useSelector((state) => state.cart);
+const location =useLocation();
+const { account} = useContext(DataContext);
+const orders=account.orders
 
-  useEffect(()=>{
-      axios.get('/orders')
-      .then((data)=>{
-        console.log(data)
-         setOrders([]);
-         setOrders(data.data.orders);
-      })
-      .catch(e=>{
-         if(!e.response){
-             alert(e.message)
-         }
-     })
-  },[]);
 
   return (
     <div style={{background:'#f2f2f2'}} >

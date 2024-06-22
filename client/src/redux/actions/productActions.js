@@ -2,7 +2,7 @@
 import axios from 'axios';
 import * as actionTypes from '../constants/productConstants'
 
-const URL="";
+const URL="/api";
 
 export const getProducts=()=> async(dispatch)=>{      //middleware ke through api ko call
     try{

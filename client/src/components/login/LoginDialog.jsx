@@ -1,12 +1,12 @@
 
 import {Box,Button,Checkbox, Dialog,TextField,Typography, styled,} from "@mui/material";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../../context/DataProvider";
 import { authenticateLogin, authenticateSignup } from "../../service/api";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
-import axios from "axios";
+
 
 const Component = styled(Box)`
   height: 70vh;
@@ -124,14 +124,35 @@ const loginInitialValues = {
 
 export default function LoginDialog({ open, setOpen }) {
   
-  const [account, toggleAccount] = useState(accountInitialValues.login);
+  const [accountInfo, toggleAccount] = useState(accountInitialValues.login);
   const [signup, setSignup] = useState(signupInitialValues); //to store the Signup Data*
   const [login, setLogin] = useState(loginInitialValues);
   const [error, setError] = useState(false);
   const [checked, setChecked] = useState(false);
+  const [isSignupValid, setIsSignupValid] = useState(false);
+  const [isLoginValid, setIsLoginValid] = useState(false);
 
   const dispatch = useDispatch();
-  const {setExtra,extra} = useContext(DataContext);
+  const {setAccount,setUserId} = useContext(DataContext);
+
+  const validateSignupForm = () => {
+    const { firstname, lastname, username, email, password, phone } = signup;
+    return firstname && lastname && username && email && password && phone;
+  };
+
+  const validateLoginForm = () => {
+    const { username, password } = login;
+    return username && password;
+  };
+
+  useEffect(() => {
+    setIsSignupValid(validateSignupForm());
+  }, [signup]);
+
+  useEffect(() => {
+    setIsLoginValid(validateLoginForm());
+  }, [login]);
+
 
   const handleClose = () => {
     setOpen(false);
@@ -152,7 +173,9 @@ export default function LoginDialog({ open, setOpen }) {
     if (response.status === 200) {
       handleClose(); //response ana is good
       toast.success("You're Successfully Signed Up");
-      setExtra(!extra);
+      dispatch(addToCart(123,response.data.cart, true));
+      setAccount(response.data);
+      setUserId(response.data._id);
     } else {
       toast.warn("Please try with different Credentials");
     }
@@ -171,15 +194,16 @@ export default function LoginDialog({ open, setOpen }) {
       handleClose();
       toast.success(`Welcome back ${response.data.username}`);   
       setError(false);
-      setExtra(true);
+      dispatch(addToCart(123,response.data.cart, true));
+      setAccount(response.data);
+      setUserId(response.data._id);
     } else {
-      setError(!extra);
+      setError(true);
     }
   };
-  //const URL='http://localhost:3000';
-   const URL='https://flipcart2-0.onrender.com';
+
   const googleAuth=async()=>{
-     window.open(`${URL}/api/auth/google/callback`, "_self");
+     window.open(`${process.env.REACT_APP_BACKEND_URL}/api/auth/google/callback`, "_self");  //same as authorized redirect url
   }
 
   return (
@@ -193,17 +217,17 @@ export default function LoginDialog({ open, setOpen }) {
           {/* loginimage */}
           <Image>
             <Typography variant="h5" style={{ marginTop: 30 }}>
-              {account.heading}
+              {accountInfo.heading}
             </Typography>
             <Typography
               style={{ marginTop: 20, color: "rgba(255,255,255,0.7)" }}
             >
-              {account.subHeading}
+              {accountInfo.subHeading}
             </Typography>
           </Image>
 
           {/* login */}
-          {account.view === "login" ? (
+          {accountInfo.view === "login" ? (
             <Wrapper>
               <TextField
                 variant="standard"
@@ -224,7 +248,7 @@ export default function LoginDialog({ open, setOpen }) {
                 By continuing , you agree to Flipkart's Terms of Use and Privacy
                 Policy .
               </Text>
-              <LoginButton onClick={() => loginUser()}>Login</LoginButton>
+              <LoginButton onClick={loginUser}  disabled={!isLoginValid} >Login</LoginButton>
               <Typography style={{ textAlign: "center" }}>OR</Typography>
               <RequestOTP  onClick={googleAuth} > <img src="/google.png" alt="google"/> Sign in with Google</RequestOTP>
               <CreateAccount onClick={() => setSignUp()}>
@@ -277,8 +301,9 @@ export default function LoginDialog({ open, setOpen }) {
                 By continuing, I agree to terms of Use & Privacy Policy
               </CheckMe>
               <LoginButton
-                onClick={() => signupUser()}
+                onClick={signupUser}
                 style={{ opacity: checked ? "1" : "0.7" }}
+                disabled={!isSignupValid}
               >
                 Continue
               </LoginButton>

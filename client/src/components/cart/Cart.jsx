@@ -85,7 +85,8 @@ const Cart = () => {
   
 
   useEffect(() => {
-    setIsLoading(loading); // Update loading state
+    setIsLoading(loading);
+    console.log(cartItems) // Update loading state
   }, [loading]);
 
   const buyNow = async () => {
@@ -100,7 +101,7 @@ const Cart = () => {
     const headers = {
       "Content-Type": "application/json",
     };
-    const URL = "";
+    const URL = "/api";
 
     const response = await fetch(`${URL}/create-checkout-session`, {
       method: "POST",

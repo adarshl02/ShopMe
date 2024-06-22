@@ -47,6 +47,7 @@ const Profile = ({ account , setAccount,userId}) => {
       setOpen(false);
      
       try {
+         const updatedCart= await addCartTodb(cartItems,userId)
         await logout()
         toast.warn("You're logged Out");
         dispatch(cartReset()); 

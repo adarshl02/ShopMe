@@ -4,7 +4,7 @@ import passportLocalMongoose from 'passport-local-mongoose';
 const userSchema=new mongoose.Schema({
     googleId: {
         type: String,
-       
+        unique: false ,
     },
     firstname:{
         type:String,

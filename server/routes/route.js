@@ -54,11 +54,11 @@ router.get('/login/success',(req,res)=>{
             })
     }
 });
-router.get('/google',passport.authenticate('google',['profile','email']))
+router.get('/auth/google',passport.authenticate('google',['profile','email']))
 
 router.get('/auth/google/callback',passport.authenticate('google',{
-    failureRedirect:'http://localhost:3000',
-    successRedirect:'http://localhost:3000'
+    failureRedirect:process.env.URL,
+    successRedirect:process.env.URL,
     })
 )
 

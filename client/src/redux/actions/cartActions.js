@@ -2,7 +2,7 @@
 //8_04
 import axios from 'axios';
 import * as actionType from '../constants/cartConstant';
-const URL="";
+const URL="/api";
 export const addToCart=(id,arr,b)=>async(dispatch)=>{
     try{
         if(b){

@@ -3,19 +3,15 @@ import User from '../Model/user-schema.js';
 export const userSignup = async (req, res) => {
     try {
         const { firstname, lastname, username, email, phone, password } = req.body;
-
-        // Create a new user instance
-        const newUser = new User({ firstname, lastname, username, email, phone });
-
-        // Register the user
+        
+        const newUser = new User({ firstname, lastname, username, email, phone,cart:[],orders:[] });
+        
         const registeredUser = await User.register(newUser, password);
-
         // Automatically log in the user after registration
         req.login(registeredUser, (err) => {
             if (err) {
                 return res.status(500).json({ message: "Login after signup failed." });
             }
-
             return res.status(200).json(registeredUser);
         });
 
@@ -26,7 +22,6 @@ export const userSignup = async (req, res) => {
 
 export const userLogin=async(req,res)=>{
     try{
-
         if(req.flash('error').length>0){ 
             return res.status(500).json(null);
         }           
@@ -37,17 +32,33 @@ export const userLogin=async(req,res)=>{
         res.status(500).json({'Error':error.message});
     }
 }
+
 export const userCart = async (req, res) => {
     try {
-      let { cartItems, userId } = req.body;
-      let user = await User.findByIdAndUpdate(userId, { cart: [] },{runValidators:true} );                // Empty the cart array
-      user.cart = cartItems;                                                 // Assign the new cartItems array
-      await user.save();                                                     // Save the changes
-      return res.status(200).json(cartItems);
+      const { cartItems, userId } = req.body;
+  
+      // Check if cartItems and userId are provided
+      if (!cartItems || !userId) {
+        return res.status(400).json({ 'Error': 'Missing cartItems or userId' });
+      }
+  
+      // Find the user and update the cart in one step
+      const user = await User.findByIdAndUpdate(
+        userId,
+        { cart: cartItems },
+        { new: true, useFindAndModify: false } // Return the updated document
+      );
+  
+      // Check if user was found and updated
+      if (!user) {
+        return res.status(404).json({ 'Error': 'User not found' });
+      }
+  
+      return res.status(200).json(user.cart);
     } catch (error) {
-      res.status(500).json({ 'Error': error.message });
+      return res.status(500).json({ 'Error': error.message });
     }
-  }
+  };
 
 export const cartOrder=async (req,res)=>{
     try{

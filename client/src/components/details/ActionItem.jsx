@@ -76,7 +76,7 @@ const ActionItem = ({ product }) => {
       const headers = {
         "Content-Type": "application/json",
       };
-      const URL = "";
+      const URL = "/api";
 
       const response = await fetch(`${URL}/create-checkout-session`, {
         method: "POST",

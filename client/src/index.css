@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root{
   --body_background:rgba(255, 255, 255, 0.97);
   --body_color:black;

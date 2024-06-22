@@ -10,6 +10,7 @@ const Component=styled(Box)`
 
 const Container=styled(Box)`
     text-align: center;
+
     padding-top:70px;
 
 `
@@ -21,7 +22,7 @@ const Emptyorders=()=>{
     return (
         <Component>
             <Container>
-                <img src={imgurl} alt="empty" style={{width:'15%'}}/>
+                <img src={imgurl} alt="empty" style={{width:'15%',margin:'auto'}}/>
                 <Typography>No Orders till Now</Typography>
                 <Typography>Order something Now</Typography>
             </Container>

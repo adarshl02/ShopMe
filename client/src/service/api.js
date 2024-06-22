@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL='';         //our react app is on 3000 but but are routing to 8000/signup
+const URL='/api';         //our react app is on 3000 but but are routing to 8000/signup
 
 
 
@@ -47,7 +47,7 @@ export const authenticateLogin=async (data)=>{
     export const logout = async () => {
 
         try {
-            const { data } = await axios.get('/logout', { withCredentials: true })
+            const { data } = await axios.get(`${URL}/logout`, { withCredentials: true })
         } catch (error) {
             throw error
         }
