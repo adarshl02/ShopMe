@@ -16,7 +16,6 @@ export const stripePayment = async (req, res) => {
       quantity: product.quantity,
     }));
     // const URL='hosted url';
-    console.log(products);
     const stripe = new Stripe(process.env.STRIPE_SECRET);
 
     const session = await stripe.checkout.sessions.create({
@@ -26,7 +25,7 @@ export const stripePayment = async (req, res) => {
       success_url: `${process.env.URL}/myorders`,
       cancel_url: `${process.env.URL}/cancel`,
     });
-    console.log(session);
+    // console.log(session);  amny datas
     res.json({ id: session.id });
   } catch (err) {
     res.status(500).json({ message: "Error Creating Checkout Session" });

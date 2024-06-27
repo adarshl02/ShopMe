@@ -87,7 +87,6 @@ const Cart = () => {
 
   useEffect(() => {
     setIsLoading(loading);
-    console.log(cartItems) // Update loading state
   }, [loading]);
 
   const buyNow = async () => {
