@@ -83,7 +83,7 @@ function formatDate(timestamp) {
     const month = date.getMonth() + 1; // Months are zero indexed
     const year = date.getFullYear();
 
-    return `${day}, ${month}, ${year}`;
+    return `${day}/${month}/${year}`;
 }
   
 

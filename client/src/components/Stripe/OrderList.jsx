@@ -1,4 +1,4 @@
-import { Box, Button, Typography, styled } from "@mui/material";
+import { Box, Button, Rating, Typography, styled } from "@mui/material";
 import ShareLocationIcon from '@mui/icons-material/ShareLocation';
 
 const Wrapper = styled(Box)`
@@ -39,7 +39,9 @@ export const OrderList = ({ item }) => {
       <Box>
         <Typography>Delivery Status : Delivered</Typography>
       </Box>
-
+      <Box>
+      <Rating name="no-value" value={null} />
+      </Box>
       </InnerWrapper>
       <Box style={{margin:15}}>
         <Button variant="contained" endIcon={<ShareLocationIcon />}>

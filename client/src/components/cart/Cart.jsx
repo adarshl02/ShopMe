@@ -17,6 +17,7 @@ import "../PreLoader/loader.css";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import { CartToOrder, addCart } from "../../service/api";
 import { DataContext } from "../../context/DataProvider";
+import { toast } from "react-toastify";
 
 
 const Container = styled(Grid)(({ theme }) => ({
@@ -110,7 +111,6 @@ const Cart = () => {
     })
    
     const session = await response.json();
-
    // window.open(session.url, "_blank");
     const result = stripe.redirectToCheckout({
       sessionId: session.id,
@@ -118,7 +118,7 @@ const Cart = () => {
     });
 
     let res=await CartToOrder(userId,cartItems);
-
+    toast.success("Order placed successfully");
 
   };
   return (

@@ -12,11 +12,11 @@ import { fileURLToPath } from "url";
 import session, { Cookie } from "express-session";
 import MongoStore from "connect-mongo"; //for storing session in database
 import passport from "passport";
-import localStrategy from "passport-local";
-import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import User from "./Model/user-schema.js";
+
+
 import flash from "express-flash";
 import ExpressMongoSanitize from "express-mongo-sanitize";
+import { passportmiddleware } from "./passport.js";
 
 const app = express();
 
@@ -24,7 +24,7 @@ const app = express();
 //
 // app.use(ExpressMongoSanitize());  //data sanitization against malfunctioned data injection
 
-dotenv.config(); //to initialise dotenv file
+dotenv.config(); 
 app.use(
   cors()
   // {
@@ -70,51 +70,8 @@ app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new localStrategy(User.authenticate()));
+passportmiddleware();
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/api/auth/google/callback", //same as athorized url
-      scope: ["profile", "email"],
-    },
-    async (accessToken, refreshToken, profile, done) => {
-      try {
-        let user = await User.findOne({ googleId: profile.id });
-        if (!user) {
-          user = new User({
-            googleId: profile.id,
-            username: profile.displayName,
-            email: profile.emails[0].value,
-          });
-          await user.save();
-        }
-        return done(null, user);
-      } catch (err) {
-        return done(err, null);
-      }
-    }
-  )
-);
-
-passport.serializeUser((user, done) => {
-  if (user) {
-    return done(null, user.id);
-  } else {
-    return done(null, false);
-  }
-});
-
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await User.findById(id);
-    done(null, user);
-  } catch (err) {
-    done(err, null);
-  }
-});
 
 app.use(express.static(process.env.PUBLIC_DIR));
 app.use("/api", Router);
@@ -135,7 +92,5 @@ app.use("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-// DefaultData();               //default data added successfully
-//if not used await inside this , this will execute first before Server is lisenig to 8000
 
-//to run server , write nodemon index.js
+

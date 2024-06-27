@@ -8,7 +8,6 @@ export const DataContext=createContext(null);  //states aer in dataContext
 const DataProvider=({children})=>{   
     const dispatch=useDispatch();  
     const [account,setAccount]=useState(null);  //This States are available everywhere
-    const [toasti,setToasti]=useState('')
     const [userId,setUserId]=useState('')
     const[extra,setExtra]=useState(false)
 
@@ -32,7 +31,7 @@ const DataProvider=({children})=>{
 
     return (
         <DataContext.Provider value={{
-            account, setAccount,toasti,setToasti,userId,setUserId,setExtra
+            account, setAccount,userId,setUserId,setExtra
         }}>
 
         {children}
