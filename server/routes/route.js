@@ -18,21 +18,21 @@ router.get('/orders',isLoggedIn ,(req,res)=>{
     res.json(req.user);
 })
 
-router.get('/logout', isLoggedIn,(req, res) => {
-    try {
-        //This method is by 'passport'. it takes a callback with error parameter.
-        // will remove req.user and remove user from session
-        req.logout((err) => {
-            if (err) {
-                throw err
+router.get('/logout', isLoggedIn, (req, res) => {
+    req.logout((err) => {
+        if (err) {
+            return res.status(500).json({ error: "Error during logout" });
+        }
+        
+        req.session.destroy((destroyErr) => {
+            if (destroyErr) {
+                return res.status(500).json({ error: "Error destroying session" });
             }
-            res.status(200).json("logged out")
-        })
-    } catch (error) {
-        res.status(500).json(error)
-    }
-
-})
+            res.clearCookie('connect.sid'); // Clear the session cookie
+            res.status(200).json({ message: "Logged out successfully" });
+        });
+    });
+});
 
 router.get('/login/failed',(req,res)=>{
     res.status(401).json({
@@ -54,7 +54,7 @@ router.get('/login/success',(req,res)=>{
             })
     }
 });
-router.get('/auth/google',passport.authenticate('google',['profile','email']))
+router.get('/auth/google/',passport.authenticate('google',['profile','email']))
 
 router.get('/auth/google/callback',passport.authenticate('google',{
     failureRedirect:process.env.URL,

@@ -1,5 +1,5 @@
 import { Typography, Menu, MenuItem, Box, styled, Badge } from '@mui/material';
-import {  useState } from 'react';
+import {  useContext, useState } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import { toast } from 'react-toastify';
@@ -8,6 +8,7 @@ import { cartReset } from '../../redux/actions/cartActions';
 import { addCartTodb, logout } from '../../service/api';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
+import { DataContext } from '../../context/DataProvider';
 
 
 const Component=styled(Menu)`
@@ -36,6 +37,7 @@ const Profile = ({ account , setAccount,userId}) => {
     const [open,setOpen]=useState(false);
   const { cartItems} = useSelector((state) => state.cart);
     const dispatch = useDispatch();
+    const {setSimilarItemsId} = useContext(DataContext); 
 
 
     const handleClick = (event) => {
@@ -49,6 +51,7 @@ const Profile = ({ account , setAccount,userId}) => {
          const updatedCart= await addCartTodb(cartItems,userId)
         await logout()
         toast.warn("You're logged Out");
+        setSimilarItemsId('')
         dispatch(cartReset()); 
         setAccount(()=>null)
       } catch (error) {

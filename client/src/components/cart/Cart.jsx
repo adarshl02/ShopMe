@@ -15,7 +15,7 @@ import { useContext, useEffect, useState } from "react";
 import MoonLoader from "react-spinners/MoonLoader";
 import "../PreLoader/loader.css";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
-import { CartToOrder, addCart } from "../../service/api";
+import { CartToOrder } from "../../service/api";
 import { DataContext } from "../../context/DataProvider";
 import { toast } from "react-toastify";
 

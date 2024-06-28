@@ -1,6 +1,8 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import Connection from "./database/db.js"; // where connection function lies (to connect database)
-import dotenv from "dotenv";
 import DefaultData from "./defaultdata.js";
 import helmet from "helmet";
 import Router from "./routes/route.js";
@@ -12,11 +14,9 @@ import { fileURLToPath } from "url";
 import session, { Cookie } from "express-session";
 import MongoStore from "connect-mongo"; //for storing session in database
 import passport from "passport";
-
-
 import flash from "express-flash";
 import ExpressMongoSanitize from "express-mongo-sanitize";
-import { passportmiddleware } from "./passport.js";
+import './passport.js';
 
 const app = express();
 
@@ -24,13 +24,12 @@ const app = express();
 //
 // app.use(ExpressMongoSanitize());  //data sanitization against malfunctioned data injection
 
-dotenv.config(); 
-app.use(
-  cors()
-  // {
-  //   credentials:true
-  // }
-); //so that localhost 8000 and 3000 both works
+
+
+
+app.use(cors({
+  credentials: true
+}));//so that localhost 8000 and 3000 both works
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true })); //to remove whitespace in url(can ignore)
 const __filename = fileURLToPath(import.meta.url);
@@ -70,7 +69,6 @@ app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
 
-passportmiddleware();
 
 
 app.use(express.static(process.env.PUBLIC_DIR));

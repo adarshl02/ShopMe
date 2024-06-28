@@ -2,9 +2,10 @@ import User from "./Model/user-schema.js";
 import localStrategy from "passport-local";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import passport from "passport";
+import dotenv from "dotenv";
+dotenv.config();
 
 
-export const passportmiddleware = () => {
   passport.use(new localStrategy(User.authenticate()));
 
   passport.use(
@@ -12,7 +13,7 @@ export const passportmiddleware = () => {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: `${process.env.URL}/api/auth/google/callback`, //same as authorized url
+        callbackURL: `${process.env.URL}/api/auth/google/callback`, //same as authorized url (url which it will redirect to after getting information from google(Authorised redirect uri))
         scope: ["profile", "email"],
       },
       async (accessToken, refreshToken, profile, done) => {
@@ -50,4 +51,4 @@ export const passportmiddleware = () => {
       done(err, null);
     }
   });
-};
+

@@ -1,12 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../context/DataProvider";
 import { Link } from "react-router-dom";
 
 const ProductRecommendations = ({products=[]}) => {
   
-  const { similarItemsId } = useContext(DataContext);
+  const { similarItemsId} = useContext(DataContext); // Provide a default empty array
+  const [callouts, setCallouts] = useState([]);
 
-  const callouts = products.filter(product => similarItemsId.includes(product.id));
+  useEffect(() => {
+    const updatedCallouts = Array.isArray(similarItemsId) 
+      ? products.filter(product => similarItemsId.includes(product.id))
+      : [];
+    setCallouts(updatedCallouts);
+  }, [similarItemsId]);
+  
 
   return (
     <div style={{background:'var(--body_background)'}} >
