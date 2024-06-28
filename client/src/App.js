@@ -17,7 +17,7 @@ import Orders from "./components/Stripe/Orders";
 function App() {
   return (
     //      dataprovider me jo bhi state hai ,unko use kr paye
-   <div className="App" style={{background: '#f2f2f2'}}  >
+   <div className="App" style={{background: '#f2d2bd'}}  >
     <header className="App-header" >
     <DataProvider>
       {/* <PreLoader/> */}

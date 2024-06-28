@@ -47,7 +47,7 @@ useEffect(() => {
       <Grid container spacing={1} >
          
         {orders.map((item) => (
-            <Grid item lg={3} md={6} sm={12} xs={12}>
+            <Grid item lg={3} md={6} sm={12} xs={12} key={item.id}>
           <OrderList item={item} key={item.id} />
           </Grid>
 

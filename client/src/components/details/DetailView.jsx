@@ -9,7 +9,7 @@ import ProductDetail from "./ProductDetail";
 import "../PreLoader/loader.css";
 
 const Component = styled(Box)`
-  background: #f2f2f2;
+  background: var(--body_background);
   margin-top: 55px;
 `;
 
@@ -31,7 +31,6 @@ const DetailView = () => {
   const { id } = useParams();
   const { loading, product } = useSelector((state) => state.getProductDetails);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
-  const [value, setValue] =useState(2);
   useEffect(() => {
     if (product && id !== product.id) {
       dispatch(getProductDetails(id));
@@ -42,6 +41,7 @@ const DetailView = () => {
     setIsLoading(loading); // Update loading state
   }, [loading]);
 
+  
   return (
     <Component>
       {isLoading ? ( // Render loader if isLoading is true

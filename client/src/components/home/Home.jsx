@@ -9,10 +9,11 @@ import MidSlide from './MidSlide';
 import MidSection from "./MidSection";
 import MoonLoader from "react-spinners/MoonLoader";
 import '../PreLoader/loader.css';
+import ProductRecommendations from "./ProductRecommendations";
 
 const Component =styled(Box)`
     padding : 10px;
-    background: #f2f2f2;
+    background: var(--body_background);
 
 `
 
@@ -23,7 +24,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true); // Add loading state
       
     useEffect(()=>{
-      dispatch(getProducts())  //an function
+      dispatch(getProducts())  
     },[dispatch])
 
     useEffect(() => {
@@ -49,9 +50,9 @@ export default function Home() {
         <MidSlide products={products} title="Deal of the day"/>
         <MidSection/>
         <Slide products={products} title="Discounts for you"/>
+        <ProductRecommendations products={products}  />        
         <Slide products={products} title="Suggesting items"/>
         <Slide products={products} title="Top Selection"/>
-        <Slide products={products} title="Recommended items"/>
         <Slide products={products} title="Season's top picks"/>
         <Slide products={products} title="Top Deals on Accessories"/>
       </Component> 

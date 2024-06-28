@@ -133,7 +133,7 @@ export default function LoginDialog({ open, setOpen }) {
   const [isLoginValid, setIsLoginValid] = useState(false);
 
   const dispatch = useDispatch();
-  const {setAccount,setUserId} = useContext(DataContext);
+  const {setAccount,setUserId,setSimilarItemsId,similarItemsId} = useContext(DataContext);
 
   const validateSignupForm = () => {
     const { firstname, lastname, username, email, password, phone } = signup;
@@ -176,6 +176,8 @@ export default function LoginDialog({ open, setOpen }) {
       dispatch(addToCart(123,response.data.cart, true));
       setAccount(response.data);
       setUserId(response.data._id);
+
+      
     } else {
       toast.warn("Please try with different Credentials");
     }
@@ -197,6 +199,13 @@ export default function LoginDialog({ open, setOpen }) {
       dispatch(addToCart(123,response.data.cart, true));
       setAccount(response.data);
       setUserId(response.data._id);
+      const orders=response.data.orders
+      if ( orders && orders.length > 0) {
+        const latestOrder = orders[orders.length - 1];
+  
+        setSimilarItemsId(latestOrder.similarProductIds)
+        // console.log(similarItemsId)
+    }
     } else {
       setError(true);
     }

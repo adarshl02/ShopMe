@@ -2,7 +2,6 @@ export const products = [
     { 
         id: 'product1',
         url: 'https://rukminim1.flixcart.com/image/150/150/kapoo7k0/electric-kettle/p/6/s/pigeon-favourite-original-imafs7xhj5uwgrh4.jpeg?q=70', 
-        detailUrl: 'https://rukminim1.flixcart.com/image/416/416/kapoo7k0/electric-kettle/p/6/s/pigeon-favourite-original-imafs7xhj5uwgrh4.jpeg?q=70',
         title: {
             shortTitle: 'Home & Kitchen',
             longTitle: 'Pigeon FAVOURITE Electric Kettle  (1.5 L, Silver, Black)'
@@ -20,7 +19,6 @@ export const products = [
     { 
         id: 'product2',
         url: 'https://rukminim1.flixcart.com/image/416/416/kl6wx3k0/sandwich-maker/8/r/d/sandwich-01-flipkart-smartbuy-original-imagydds4zthxt8z.jpeg?q=70', 
-        detailUrl: 'https://rukminim1.flixcart.com/image/416/416/kl6wx3k0/sandwich-maker/8/r/d/sandwich-01-flipkart-smartbuy-original-imagydds4zthxt8z.jpeg?q=70',
         title: {
             shortTitle: 'Sandwich Makers',
             longTitle: 'Flipkart SmartBuy Sandwich 01 Grill  (Black)'
@@ -38,7 +36,6 @@ export const products = [
     { 
         id: 'product3',
         url: 'https://rukminim1.flixcart.com/image/150/150/kohigsw0/resistance-tube/c/s/e/new-adjustable-single-resistance-tube-multicolor-na-ajro-deal-original-imag2xg88mhmwxz5.jpeg?q=70', 
-        detailUrl: 'https://rukminim1.flixcart.com/image/416/416/kohigsw0/resistance-tube/c/s/e/new-adjustable-single-resistance-tube-multicolor-na-ajro-deal-original-imag2xg88mhmwxz5.jpeg?q=70', 
         title: {
             shortTitle: 'Fitness Gear',
             longTitle: 'AJRO DEAL New Adjustable Single Resistance Tube (Multicolor) Resistance Tube  (Multicolor)'
@@ -56,7 +53,6 @@ export const products = [
     { 
         id: 'product4',
         url: 'https://rukminim1.flixcart.com/image/300/300/kll7bm80/smartwatch/c/1/n/43-mo-sw-sense-500-android-ios-molife-original-imagyzyycnpujyjh.jpeg?q=70', 
-        detailUrl: 'https://rukminim1.flixcart.com/image/416/416/kll7bm80/smartwatch/c/1/n/43-mo-sw-sense-500-android-ios-molife-original-imagyzyycnpujyjh.jpeg?q=70',
         title: {
             shortTitle: 'Smart Watches',
             longTitle: 'Molife Sense 500 Smartwatch  (Black Strap, Freesize)',
@@ -74,7 +70,6 @@ export const products = [
     { 
         id: 'product5',
         url: 'https://rukminim1.flixcart.com/image/416/416/k3uhhu80/hair-dryer/n/m/t/nova-2800-w-professional-nhp-8220-original-imafmvwfhmzsxdrw.jpeg?q=70',
-        detailUrl: 'https://rukminim1.flixcart.com/image/416/416/k3uhhu80/hair-dryer/n/m/t/nova-2800-w-professional-nhp-8220-original-imafmvwfhmzsxdrw.jpeg?q=70', 
         title: {
             shortTitle: 'Trimmers, Dryers & more',
             longTitle: 'Nova Professional NHP 8220 Hair Dryer  (1800 W, Multicolor)'
@@ -92,7 +87,6 @@ export const products = [
     { 
         id: 'product6',
         url: 'https://rukminim1.flixcart.com/image/150/150/kk01pjk0/fan/d/d/l/tiktik-quiet-portable-table-fan-zigma-original-imafzg7ftzuckpad.jpeg?q=70',
-        detailUrl: 'https://rukminim1.flixcart.com/image/416/416/kk01pjk0/fan/d/d/l/tiktik-quiet-portable-table-fan-zigma-original-imafzg7ftzuckpad.jpeg?q=70', 
         title: {
             shortTitle: 'Table Fans',
             longTitle: 'Portable 300 mm Ultra High Speed 3 Blade Table Fan  (Black, Pack of 1)'
@@ -110,7 +104,6 @@ export const products = [
     { 
         id: 'product7',
         url: 'https://rukminim1.flixcart.com/image/150/150/kcgk1ow0/headphone/n/u/a/235v2-fast-charging-boat-original-imaftk6us4af7bca.jpeg?q=70',
-        detailUrl: 'https://rukminim1.flixcart.com/image/416/416/kcgk1ow0/headphone/n/u/a/235v2-fast-charging-boat-original-imaftk6us4af7bca.jpeg?q=70', 
         title: {
             shortTitle: 'Headphones',
             longTitle: 'boAt Rockerz 235v2 with ASAP charging Version 5.0 Bluetooth Headset'
@@ -128,7 +121,6 @@ export const products = [
     { 
         id: 'product8',
         url: 'https://png.pngtree.com/background/20220721/original/pngtree-slr-camera-on-white-background-picture-image_1709061.jpg',
-        detailUrl: 'https://png.pngtree.com/background/20220721/original/pngtree-slr-camera-on-white-background-picture-image_1709061.jpg',
         title: {
             shortTitle: 'Cameras',
             longTitle: 'Action Camera with 4K Recording and Handheld Gimbal  (Black)'
@@ -146,7 +138,6 @@ export const products = [
     { 
         id: 'product9',
         url: 'https://m.media-amazon.com/images/I/51Y9oAyCugL._AC_.jpg',
-        detailUrl: 'https://m.media-amazon.com/images/I/51Y9oAyCugL._AC_.jpg', 
         title: {
             shortTitle: 'Blenders',
             longTitle: 'Portable USB Blender Mixer BL-101  (Black)'
@@ -164,7 +155,6 @@ export const products = [
     { 
         id: 'product10',
         url: 'https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/2063640/2023/12/8/294bb6d8-5351-4cea-996f-bb887acb0e0e1702013073651FossilMenLeatherStrapsAnalogueWatch-FS53041.jpg',
-        detailUrl: 'https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/2063640/2023/12/8/294bb6d8-5351-4cea-996f-bb887acb0e0e1702013073651FossilMenLeatherStrapsAnalogueWatch-FS53041.jpg', 
         title: {
             shortTitle: 'Watches',
             longTitle: 'Fossil FS5304 Analog Watch  - For Men'
@@ -182,7 +172,6 @@ export const products = [
     { 
         id: 'product11',
         url: 'https://m.media-amazon.com/images/I/81Ji+i3PQNL.jpg',
-        detailUrl: 'https://m.media-amazon.com/images/I/81Ji+i3PQNL.jpg', 
         title: {
             shortTitle: 'Fitness Equipment',
             longTitle: 'Kamachi Home Gym Combo 40kg  (Multicolor)'
@@ -200,7 +189,6 @@ export const products = [
     { 
         id: 'product12',
         url: 'https://m.media-amazon.com/images/I/71XEsXS5RlL._AC_UF1000,1000_QL80_.jpg',
-        detailUrl: 'https://m.media-amazon.com/images/I/71XEsXS5RlL._AC_UF1000,1000_QL80_.jpg', 
         title: {
             shortTitle: 'Books',
             longTitle: 'The Psychology of Money  (English, Hardcover, Housel Morgan)'
@@ -218,7 +206,6 @@ export const products = [
     { 
         id: 'product13',
         url: 'https://zebronics.com/cdn/shop/products/Zeb-Jukebar-3901-pic1.jpg?v=1622275127&width=1024',
-        detailUrl: 'https://zebronics.com/cdn/shop/products/Zeb-Jukebar-3901-pic1.jpg?v=1622275127&width=1024', 
         title: {
             shortTitle: 'Speakers',
             longTitle: 'Zebronics Zeb-Juke Bar 4.1 Soundbar  (Black)'
@@ -236,7 +223,6 @@ export const products = [
     { 
         id: 'product14',
         url: 'https://m.media-amazon.com/images/I/51JqMw-fLZL.jpg',
-        detailUrl: 'https://m.media-amazon.com/images/I/51JqMw-fLZL.jpg', 
         title: {
             shortTitle: 'Microphones',
             longTitle: 'Boya BY-M1 Microphone  (Black)'
@@ -254,7 +240,6 @@ export const products = [
     { 
         id: 'product15',
         url: 'https://rukminim2.flixcart.com/image/850/1000/kvtuxe80/suitcase/y/q/e/79-krypton-sp-79-cm-4wheel-tsa-exp-g-black-polycarbonate-trolley-original-imag8nfyh7vk5hzy.jpeg?q=90&crop=false',
-        detailUrl: 'https://rukminim2.flixcart.com/image/850/1000/kvtuxe80/suitcase/y/q/e/79-krypton-sp-79-cm-4wheel-tsa-exp-g-black-polycarbonate-trolley-original-imag8nfyh7vk5hzy.jpeg?q=90&crop=false', 
         title: {
             shortTitle: 'Luggage',
             longTitle: 'Polycarbonate Trolley Suitcase Cabin Luggage  (Black)'
@@ -272,8 +257,7 @@ export const products = [
     { 
         id: 'product16',
         url: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1605267760/Croma%20Assets/Small%20Appliances/Lighting%20Products/Images/8839246053406.png',
-        detailUrl: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1605267760/Croma%20Assets/Small%20Appliances/Lighting%20Products/Images/8839246053406.png', 
-        title: {
+       title: {
             shortTitle: 'Smart Lighting',
             longTitle: 'Syska Smart LED Bulb  (White)'
         }, 
@@ -287,5 +271,175 @@ export const products = [
         discount: 'Special Offer', 
         tagline: 'Light Up Smartly' 
     },
+    { 
+        id: 'product17',
+        url: 'https://m.media-amazon.com/images/I/81xiYqe5klL._AC_UF1000,1000_QL80_.jpg', 
+        title: {
+            shortTitle: 'Home Décor',
+            longTitle: 'Porsche Collection Table Lamp Set of 2  (Multicolor)'
+        }, 
+        price: {
+            mrp: 3999,
+            cost: 2599,
+            discount: '35%'
+        },
+        quantity: 1,
+        description: 'Brighten up your living space with this stylish Porsche Collection Table Lamp set. With a sleek design and multi-color options, it’s perfect for adding a touch of elegance to any room.',
+        discount: 'Save 35%', 
+        tagline: 'Illuminate Elegantly' 
+    },
+    { 
+        id: 'product18',
+        url: 'https://m.media-amazon.com/images/I/21MeVvb8mKL.jpg', 
+        title: {
+            shortTitle: 'Kitchen Appliances',
+            longTitle: 'Straight Line Hand Blender  (White)'
+        }, 
+        price: {
+            mrp: 2999,
+            cost: 1799,
+            discount: '40%'
+        },
+        quantity: 1,
+        description: 'Make your cooking tasks easier with the Straight Line Hand Blender. Featuring a powerful motor and multiple speed settings, this blender is perfect for smoothies, soups, and more.',
+        discount: 'Flat 40% Off', 
+        tagline: 'Blend with Ease' 
+    },
+    { 
+        id: 'product19',
+        url: 'https://m.media-amazon.com/images/I/916GGqnsG+L.jpg', 
+        title: {
+            shortTitle: 'Cameras',
+            longTitle: 'Canon EOS 3000D DSLR Camera  (Black)'
+        }, 
+        price: {
+            mrp: 29999,
+            cost: 23999,
+            discount: '20%'
+        },
+        quantity: 1,
+        description: 'Capture stunning photos and videos with the Canon EOS 3000D DSLR Camera. Equipped with a powerful sensor and various shooting modes, it’s perfect for both beginners and professionals.',
+        discount: 'Flat 20% Off', 
+        tagline: 'Shoot Like a Pro' 
+    },
+    { 
+        id: 'product20',
+        url: 'https://m.media-amazon.com/images/I/71s9FMKzr+L._AC_UF1000,1000_QL80_.jpg', 
+        title: {
+            shortTitle: 'Headphones',
+            longTitle: 'Mi Super Bass Wireless Headphones  (Red, Black, Over the Ear)'
+        }, 
+        price: {
+            mrp: 2199,
+            cost: 1799,
+            discount: '18%'
+        },
+        quantity: 1,
+        description: 'Enjoy deep bass and high-quality sound with the Mi Super Bass Wireless Headphones. Featuring a comfortable over-ear design and long battery life, they’re perfect for music lovers on the go.',
+        discount: 'Save 18%', 
+        tagline: 'Feel the Bass' 
+    },
+    { 
+        id: 'product21',
+        url: 'https://cdn11.bigcommerce.com/s-xyx0x9ybhg/images/stencil/1280x1280/products/1172/7911/B07JKXSJMX.MAIN__37614.1684305375.jpg?c=2', 
+        title: {
+            shortTitle: 'Personal Care',
+            longTitle: 'Oral-B CrossAction Electric Toothbrush  (White)'
+        }, 
+        price: {
+            mrp: 1999,
+            cost: 1499,
+            discount: '25%'
+        },
+        quantity: 1,
+        description: 'Maintain your oral hygiene with the Oral-B CrossAction Electric Toothbrush. Featuring advanced bristle technology and multiple brushing modes, it ensures a thorough clean every time.',
+        discount: 'Save 25%', 
+        tagline: 'Healthy Smiles' 
+    },
+    { 
+        id: 'product22',
+        url: 'https://m.media-amazon.com/images/I/51H44McUwnL._AC_UF1000,1000_QL80_.jpg', 
+        title: {
+            shortTitle: 'Water Purifiers',
+            longTitle: 'Aquaguard RO+UV Water Purifier  (White)'
+        }, 
+        price: {
+            mrp: 15999,
+            cost: 12999,
+            discount: '19%'
+        },
+        quantity: 1,
+        description: 'Ensure safe drinking water for your family with the Aquaguard RO+UV Water Purifier. Combining advanced filtration technologies, it removes impurities and provides pure, healthy water.',
+        discount: 'Save 19%', 
+        tagline: 'Pure Water, Every Day' 
+    },
+    { 
+        id: 'product23',
+        url: 'https://5.imimg.com/data5/SELLER/Default/2023/2/TD/UG/RL/150588567/sup-x-game-box-400-in-one-handheld-game-console-with-remote-controller-2-player-multi-color--500x500.jpg', 
+        title: {
+            shortTitle: 'Gaming',
+            longTitle: 'SUP Game Box 400 in 1 Handheld Console  (Multicolor)'
+        }, 
+        price: {
+            mrp: 1999,
+            cost: 899,
+            discount: '55%'
+        },
+        quantity: 1,
+        description: 'Relive your childhood memories with the SUP Game Box 400 in 1 Handheld Console. Featuring a wide range of classic games, it’s perfect for on-the-go entertainment.',
+        discount: 'Save 55%', 
+        tagline: 'Play Anywhere' 
+    },
+    { 
+        id: 'product24',
+        url: 'https://m.media-amazon.com/images/I/7180ZAZmERL.jpg', 
+        title: {
+            shortTitle: 'Memory Cards',
+            longTitle: 'SanDisk Ultra 64 GB MicroSDXC Class 10 100 MB/s Memory Card'
+        }, 
+        price: {
+            mrp: 1299,
+            cost: 799,
+            discount: '38%'
+        },
+        quantity: 1,
+        description: 'Expand your device storage with the SanDisk Ultra 64 GB MicroSDXC Memory Card. Offering fast transfer speeds and reliable performance, it’s ideal for smartphones, tablets, and cameras.',
+        discount: 'Save 38%', 
+        tagline: 'Expand Your Storage' 
+    },
+    { 
+        id: 'product25',
+        url: 'https://m.media-amazon.com/images/I/31ZJ9HKFxSL.jpg', 
+        title: {
+            shortTitle: 'Washing Machines',
+            longTitle: 'Lifelong 6.2 kg Fully Automatic Top Load Washing Machine  (White)'
+        }, 
+        price: {
+            mrp: 15999,
+            cost: 9999,
+            discount: '37%'
+        },
+        quantity: 1,
+        description: 'Simplify your laundry tasks with the Lifelong Fully Automatic Top Load Washing Machine. Featuring multiple wash programs and a user-friendly interface, it ensures clean and fresh clothes every time.',
+        discount: 'Flat 37% Off', 
+        tagline: 'Wash with Ease' 
+    },
+    { 
+        id: 'product26',
+        url: 'https://m.media-amazon.com/images/I/81sfWkuhxwL.jpg', 
+        title: {
+            shortTitle: 'Fitness Gear',
+            longTitle: 'Kobo Weight Lifting Gloves  (Black, Medium)'
+        }, 
+        price: {
+            mrp: 799,
+            cost: 499,
+            discount: '38%'
+        },
+        quantity: 1,
+        description: 'Enhance your gym sessions with Kobo Weight Lifting Gloves. Providing excellent grip and comfort, these gloves are perfect for weightlifting, cross-training, and other fitness activities.',
+        discount: 'Save 38%', 
+        tagline: 'Lift with Confidence' 
+    }
 
 ];

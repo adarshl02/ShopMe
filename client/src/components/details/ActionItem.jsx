@@ -95,7 +95,7 @@ const ActionItem = ({ product }) => {
   return (
     <LeftContainer>
       <Box style={{ padding:' 15px 20px', border: "1px solid #f0f0f0" }}>
-        <Image src={product.detailUrl} />
+        <Image src={product.url} />
       </Box>
       <StyledButton
         variant="contained"

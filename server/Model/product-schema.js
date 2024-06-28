@@ -7,13 +7,13 @@ const productSchema=new mongoose.Schema({           // this is schema created at
         unique:true
     },
     url:String,
-    detailUrl:String,
     title:Object,
     price:Object,
     quantity:Number,
     description:String,
     discount:String,
-    tagline:String
+    tagline:String,
+    similarProductIds: [String] 
 });
                               //becomes 'Products' collection
 const Product=mongoose.model("product",productSchema); // a collection in ProductSchema database

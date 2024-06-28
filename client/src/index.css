@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root{
-  --body_background:rgba(255, 255, 255, 0.97);
+  --body_background:#f2f2f2;
   --body_color:black;
   --link_color:navy;
 }
@@ -21,7 +21,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color:#f2f2f2
+  background-color:var(--body_background)
 }
 
 body::-webkit-scrollbar {

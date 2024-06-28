@@ -72,7 +72,7 @@ router.post('/create-checkout-session',isLoggedIn,stripePayment);
 router.put('/cart',userCart);
 router.put('/cartToOrder',cartOrder);
 
-
+// router.post('/recommend',recommendProduct);
 
 export default router;
 

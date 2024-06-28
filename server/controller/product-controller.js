@@ -10,7 +10,6 @@ export const getProducts=async(req,res)=>{
     }
 }
 
-//6_08_DONE_GIVEN PRODUCT WHICH GET CLICKED IN STORE
 
 export const getProductById=async(req,res)=>{
     try{
@@ -23,3 +22,4 @@ export const getProductById=async(req,res)=>{
         res.status(500).json({message:error.message});
     }
 } 
+

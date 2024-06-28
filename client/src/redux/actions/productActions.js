@@ -7,7 +7,8 @@ const URL="/api";
 export const getProducts=()=> async(dispatch)=>{      //middleware ke through api ko call
     try{
         dispatch({type:actionTypes.GET_PRODUCTS_REQUEST});
-        const {data}=await axios.get(`${URL}/products`);  // give response from backend ,not take request
+        const {data}=await axios.get(`${URL}/products`); 
+         // here updated data is coming in data 
         dispatch({type: actionTypes.GET_PRODUCTS_SUCCESS,payload:data})    //automatically calls productReducer
 
     }catch(error){
