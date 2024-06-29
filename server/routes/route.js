@@ -54,11 +54,13 @@ router.get('/login/success',(req,res)=>{
             })
     }
 });
-router.get('/auth/google',passport.authenticate('google',['profile','email']))   //2)
+router.get('/auth/google',
+    passport.authenticate('google', { scope: ['profile', 'email'] })
+  );  //2)
 
 router.get('/auth/google/callback',passport.authenticate('google',{    //4) final
-    failureRedirect:process.env.URL,
     successRedirect:process.env.URL,
+    failureRedirect:process.env.URL,
     })
 )
 

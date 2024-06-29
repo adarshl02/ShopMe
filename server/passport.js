@@ -2,9 +2,11 @@ import User from "./Model/user-schema.js";
 import localStrategy from "passport-local";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import passport from "passport";
-import dotenv from "dotenv";
-dotenv.config();
 
+// import dotenv from "dotenv";
+// dotenv.config();
+
+export default function passportFunction(){
 
   passport.use(new localStrategy(User.authenticate()));
 
@@ -52,3 +54,4 @@ dotenv.config();
     }
   });
 
+}

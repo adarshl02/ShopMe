@@ -16,7 +16,7 @@ import MongoStore from "connect-mongo"; //for storing session in database
 import passport from "passport";
 import flash from "express-flash";
 import ExpressMongoSanitize from "express-mongo-sanitize";
-
+import passportFunction from './passport.js'
 
 const app = express();
 
@@ -69,7 +69,7 @@ app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
 
-import './passport.js';
+passportFunction()
 
 app.use(express.static(process.env.PUBLIC_DIR));
 app.use("/api", Router);
