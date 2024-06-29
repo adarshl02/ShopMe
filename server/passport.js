@@ -13,7 +13,7 @@ dotenv.config();
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: `${process.env.URL}/api/auth/google/callback`, //same as authorized url (url which it will redirect to after getting information from google(Authorised redirect uri))
+        callbackURL: `${process.env.URL}/api/auth/google/callback`, //3) handles data
         scope: ["profile", "email"],
       },
       async (accessToken, refreshToken, profile, done) => {

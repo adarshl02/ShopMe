@@ -78,7 +78,6 @@ app.use("/api", Router);
 const PORT = process.env.PORT || 8000;
 
 
-
  if(process.env.NODE_ENV==='production'){
    app.use('*',(req,res)=>{
   res.sendFile(path.resolve(__dirname,'build','index.html'));
