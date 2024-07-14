@@ -1,6 +1,6 @@
 import express  from "express";
 import {userSignup,userLogin, userCart, cartOrder} from "../controller/user-controller.js"
-import { getProducts ,getProductById} from "../controller/product-controller.js";
+import { getProducts ,getProductById, setNewRating} from "../controller/product-controller.js";
 import { stripePayment} from "../controller/payment-controller.js";
 import passport from "passport";
 import { isLoggedIn } from "../middleware/userMiddleware.js";
@@ -54,25 +54,26 @@ router.get('/login/success',(req,res)=>{
             })
     }
 });
-router.get('/auth/google',
-    passport.authenticate('google', { scope: ['profile', 'email'] })
-  );  //2)
-
-router.get('/auth/google/callback',passport.authenticate('google',{    //4) final
-    successRedirect:process.env.URL,
-    failureRedirect:process.env.URL,
-    })
-)
+// router.get('/auth/google',
+//     passport.authenticate('google', { scope: ['profile', 'email'] })
+//   );  //2)
+// 
+// router.get('/auth/google/callback',passport.authenticate('google',{    //4) final
+//     successRedirect:process.env.URL,
+//     failureRedirect:process.env.URL,
+//     })
+// )
 
 
 router.post('/signup',userSignup);   //if get matched then execute to userSignup(backend api)
 router.post('/login',passport.authenticate('local',{failureFlash:true}) ,userLogin);
 
+router.post('/ratings',isLoggedIn,setNewRating)
 router.post('/create-checkout-session',isLoggedIn,stripePayment);
 
 
 router.put('/cart',userCart);
-router.put('/cartToOrder',cartOrder);
+router.post('/cartToOrder',cartOrder);
 
 // router.post('/recommend',recommendProduct);
 

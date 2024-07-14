@@ -1,4 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+import { invoiceTemplate } from '../constants/invoiceTemplate.js';
 import User from '../Model/user-schema.js';
+import nodemailer from 'nodemailer'
+
 
 export const userSignup = async (req, res) => {
     try {
@@ -24,7 +30,8 @@ export const userLogin=async(req,res)=>{
     try{
         if(req.flash('error').length>0){ 
             return res.status(500).json(null);
-        }           
+        }     
+        console.log(req.user)     
            return res.status(200).json(req.user);
 
 
@@ -60,21 +67,43 @@ export const userCart = async (req, res) => {
     }
   };
 
+  //Email
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // Use `true` for port 465, `false` for all other ports
+    auth: {
+      user: "adarshl10604@gmail.com",
+      pass: process.env.MAIL_PASSWORD,
+    },
+  });
+
 export const cartOrder=async (req,res)=>{
     try{
-        let {userId,cartItems}=req.body;
 
+        let {userId,cartItems}=req.body;
+        
         const itemsWithOrderDate = cartItems.map(item => ({
             ...item,
             orderDate: formatDate(Date.now())  // Adding orderDate as Date.now()
         }));
 
         let user = await User.findByIdAndUpdate(userId, { $push:{ orders: {$each:itemsWithOrderDate}} },{runValidators:true});
+
         user.cart=[];
         await user.save(); 
-        return res.status(200).json();
+        const { email} = req.user;
+       
+        const info = await transporter.sendMail({
+            from: '"Ecommerce : ShopMe" <order@gmail.com>', // sender address
+            to: email, // list of receivers
+            subject: 'Order Received', // Subject line
+            text: "Hello world?", // plain text body
+            html: invoiceTemplate(cartItems), // html body
+          });
+          return res.status(200).json({ message: 'Order processed successfully' });
     }catch(error){
-        res.status(500).json({ 'Error': error.message });
+        return res.status(500).json({ 'Error': error.message });
     }
 }
 function formatDate(timestamp) {

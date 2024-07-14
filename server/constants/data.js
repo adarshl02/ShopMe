@@ -14,7 +14,10 @@ export const products = [
         quantity: 1,
         description: 'This electric kettle from Pigeon will soon become a traveler’s best friend, a hostelite’s savior, and an answer to all the midnight cravings. With this handy appliance, you can boil water and use it to make instant noodles, packet soup, coffee, and green tea.',
         discount: 'Extra 10% Off', 
-        tagline: 'Deal of the day' 
+        rating:0,
+        ratingCount:0,
+        tagline: 'Deal of the day',
+         
     },
     { 
         id: 'product2',
@@ -31,6 +34,8 @@ export const products = [
         quantity: 1,
         description: 'This non-stick sandwich toaster is easy to use and very handy. Directly hold over flame to make tasty toasts and toasted sandwiches. Specially designed by keeping your needs in mind, the sandwich maker makes whatever you’re doing simpler, smarter, and better.',
         discount: 'From 99+5% Off', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Prestige, Nova & more' 
     },
     { 
@@ -48,6 +53,8 @@ export const products = [
         quantity: 1,
         description: 'This unique product can tone your back muscles, reduce belly fat, improve blood circulation, and also improve your body posture. It increases the stamina, energy, and vitality of the body. The elastic resistance of the rubber training rope can be used to train and exercise in whichever way you want, according to your physical needs.',
         discount: 'Upto 70% Off', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Deal of the Day' 
     },
     { 
@@ -65,6 +72,8 @@ export const products = [
         quantity: 1,
         description: 'The Molife Sense 500, a brilliant smartwatch with a beautiful large display. Say hello to the infinity 1.7-inch display with 2.5D curved edges. Thanks to seamless Bluetooth 5.0 connectivity, you won’t have to keep waiting. Bring a change to your outfit every day with changeable straps. A splash of color every day keeps the boredom away.',
         discount: 'Grab Now', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Best Seller' 
     },
     { 
@@ -82,6 +91,8 @@ export const products = [
         quantity: 1,
         description: 'Get salon-like hair styling at your home with the Nova Professional NHP 8220 Hair Dryer. It comes with multiple temperature settings, and a powerful motor, and is designed to make your hair look fabulous with a glossy finish.',
         discount: 'From ₹499', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Kubra, Nova & more' 
     },
     { 
@@ -99,6 +110,8 @@ export const products = [
         quantity: 1,
         description: 'Table Fan. Perfect size fan for use on a table, desk, or in an RV. Whisper-quiet, powerful airflow and reliable operation in a compact 6" size. Two adjustable speeds to customize airflow: high or low settings. Tough break-resistant ABS plastic blades.',
         discount: 'Minimum 40% Off', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Top Selling' 
     },
     { 
@@ -116,6 +129,8 @@ export const products = [
         quantity: 1,
         description: 'Let music brighten up your mood anytime, anywhere with the boAt 235v2 Fast Charging Bluetooth Headset. This Bluetooth headset features a Call Vibration Alert, a Fast Charging Technology, and Easy Access Controls to listen to and manage your favorite music with ease.',
         discount: 'Minimum 50% Off', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Grab Now!' 
     },
     { 
@@ -133,6 +148,8 @@ export const products = [
         quantity: 1,
         description: 'Capture every adventure with this Action Camera featuring 4K recording and a handheld gimbal for smooth, steady shots. Waterproof, durable, and equipped with multiple mounting options, this camera is ready for any extreme sports activity.',
         discount: 'Limited Offer', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Capture Your Adventures' 
     },
     { 
@@ -150,6 +167,8 @@ export const products = [
         quantity: 1,
         description: 'Make smoothies and shakes on-the-go with the Portable USB Blender Mixer BL-101. With a rechargeable battery and compact design, this blender is perfect for a healthy lifestyle on the move. Easy to clean and maintain, it’s a convenient solution for your kitchen.',
         discount: 'Save ₹1400', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Blend Anywhere' 
     },
     { 
@@ -167,6 +186,8 @@ export const products = [
         quantity: 1,
         description: 'Add a touch of sophistication to your wrist with the Fossil FS5304 Analog Watch for Men. Featuring a sleek design, durable build, and water resistance, this watch is perfect for both casual and formal occasions.',
         discount: 'Flat 25% Off', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Luxury for Less' 
     },
     { 
@@ -184,6 +205,8 @@ export const products = [
         quantity: 1,
         description: 'Achieve your fitness goals with the Kamachi Home Gym Combo 40kg. This comprehensive set includes dumbbells, weight plates, and a variety of workout accessories to enhance your home training sessions. Perfect for strength training and muscle building.',
         discount: 'Limited Period Offer', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Your Fitness Partner' 
     },
     { 
@@ -201,6 +224,8 @@ export const products = [
         quantity: 1,
         description: 'In The Psychology of Money, Morgan Housel shares 19 short stories exploring the strange ways people think about money and teaches you how to make better sense of one of life’s most important topics.',
         discount: 'Flat 25% Off', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Best Seller' 
     },
     { 
@@ -218,6 +243,8 @@ export const products = [
         quantity: 1,
         description: 'Elevate your home entertainment with the Zebronics Zeb-Juke Bar 4.1 Soundbar. Featuring powerful audio output, multiple connectivity options, and a sleek design, this soundbar is perfect for an immersive audio experience.',
         discount: 'Flat 40% Off', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Immersive Sound' 
     },
     { 
@@ -235,6 +262,8 @@ export const products = [
         quantity: 1,
         description: 'The Boya BY-M1 Microphone is an ideal choice for vloggers, podcasters, and interviewers. With its omnidirectional pickup pattern and high-quality sound output, it ensures crystal-clear recordings every time.',
         discount: 'Flat 50% Off', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Record with Clarity' 
     },
     { 
@@ -252,6 +281,8 @@ export const products = [
         quantity: 1,
         description: 'Travel in style with this Polycarbonate Trolley Suitcase Cabin Luggage. Durable, lightweight, and spacious, it offers smooth mobility and secure packing for all your travel needs.',
         discount: 'Save 40%', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Travel Light' 
     },
     { 
@@ -269,6 +300,8 @@ export const products = [
         quantity: 1,
         description: 'Illuminate your home with the Syska Smart LED Bulb. Compatible with voice assistants, it allows you to control lighting with ease. Energy-efficient and long-lasting, it’s a smart choice for modern homes.',
         discount: 'Special Offer', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Light Up Smartly' 
     },
     { 
@@ -286,6 +319,8 @@ export const products = [
         quantity: 1,
         description: 'Brighten up your living space with this stylish Porsche Collection Table Lamp set. With a sleek design and multi-color options, it’s perfect for adding a touch of elegance to any room.',
         discount: 'Save 35%', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Illuminate Elegantly' 
     },
     { 
@@ -303,6 +338,8 @@ export const products = [
         quantity: 1,
         description: 'Make your cooking tasks easier with the Straight Line Hand Blender. Featuring a powerful motor and multiple speed settings, this blender is perfect for smoothies, soups, and more.',
         discount: 'Flat 40% Off', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Blend with Ease' 
     },
     { 
@@ -320,6 +357,8 @@ export const products = [
         quantity: 1,
         description: 'Capture stunning photos and videos with the Canon EOS 3000D DSLR Camera. Equipped with a powerful sensor and various shooting modes, it’s perfect for both beginners and professionals.',
         discount: 'Flat 20% Off', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Shoot Like a Pro' 
     },
     { 
@@ -337,6 +376,8 @@ export const products = [
         quantity: 1,
         description: 'Enjoy deep bass and high-quality sound with the Mi Super Bass Wireless Headphones. Featuring a comfortable over-ear design and long battery life, they’re perfect for music lovers on the go.',
         discount: 'Save 18%', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Feel the Bass' 
     },
     { 
@@ -354,6 +395,8 @@ export const products = [
         quantity: 1,
         description: 'Maintain your oral hygiene with the Oral-B CrossAction Electric Toothbrush. Featuring advanced bristle technology and multiple brushing modes, it ensures a thorough clean every time.',
         discount: 'Save 25%', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Healthy Smiles' 
     },
     { 
@@ -371,6 +414,8 @@ export const products = [
         quantity: 1,
         description: 'Ensure safe drinking water for your family with the Aquaguard RO+UV Water Purifier. Combining advanced filtration technologies, it removes impurities and provides pure, healthy water.',
         discount: 'Save 19%', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Pure Water, Every Day' 
     },
     { 
@@ -388,6 +433,8 @@ export const products = [
         quantity: 1,
         description: 'Relive your childhood memories with the SUP Game Box 400 in 1 Handheld Console. Featuring a wide range of classic games, it’s perfect for on-the-go entertainment.',
         discount: 'Save 55%', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Play Anywhere' 
     },
     { 
@@ -405,6 +452,8 @@ export const products = [
         quantity: 1,
         description: 'Expand your device storage with the SanDisk Ultra 64 GB MicroSDXC Memory Card. Offering fast transfer speeds and reliable performance, it’s ideal for smartphones, tablets, and cameras.',
         discount: 'Save 38%', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Expand Your Storage' 
     },
     { 
@@ -422,6 +471,8 @@ export const products = [
         quantity: 1,
         description: 'Simplify your laundry tasks with the Lifelong Fully Automatic Top Load Washing Machine. Featuring multiple wash programs and a user-friendly interface, it ensures clean and fresh clothes every time.',
         discount: 'Flat 37% Off', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Wash with Ease' 
     },
     { 
@@ -439,6 +490,8 @@ export const products = [
         quantity: 1,
         description: 'Enhance your gym sessions with Kobo Weight Lifting Gloves. Providing excellent grip and comfort, these gloves are perfect for weightlifting, cross-training, and other fitness activities.',
         discount: 'Save 38%', 
+        rating:0,
+        ratingCount:0,
         tagline: 'Lift with Confidence' 
     }
 

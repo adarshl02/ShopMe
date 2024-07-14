@@ -12,8 +12,11 @@ const productSchema=new mongoose.Schema({           // this is schema created at
     quantity:Number,
     description:String,
     discount:String,
+    rating:Number ,
+    ratingCount:Number,
     tagline:String,
-    similarProductIds: [String] 
+    similarProductIds: [String],
+   
 });
                               //becomes 'Products' collection
 const Product=mongoose.model("product",productSchema); // a collection in ProductSchema database

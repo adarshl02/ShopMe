@@ -17,7 +17,6 @@ import passport from "passport";
 import flash from "express-flash";
 import ExpressMongoSanitize from "express-mongo-sanitize";
 import passportFunction from './passport.js'
-
 const app = express();
 
 // app.use(helmet())
@@ -61,6 +60,7 @@ const sessionOptions = {
     expires: Date.now() + 24 * 60 * 60 * 1000,
     maxAge: 24 * 60 * 60 * 1000,
     httpOnly: true,
+    secure: false,
   },
 };
 
@@ -71,9 +71,17 @@ app.use(passport.session());
 
 passportFunction()
 
-app.use(express.static(process.env.PUBLIC_DIR));
 app.use("/api", Router);
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);  //2)
 
+app.get('/auth/google/callback',passport.authenticate('google',{    //4) final
+  successRedirect:process.env.URL,
+  failureRedirect:process.env.URL,
+  })
+)
+app.use(express.static(process.env.PUBLIC_DIR));
 
 const PORT = process.env.PORT || 8000;
 
