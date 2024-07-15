@@ -59,7 +59,20 @@ export const authenticateLogin=async (data)=>{
                 cartItems:cartItems,
                 userId:userId
             }
-            return await axios.put(`${URL}/cartToOrder`,data);
+            return await axios.post(`${URL}/cartToOrder`,data);
+        }catch(error){
+            console.log("Wrong data from frontend",error);
+            return error.response;
+        }
+    }
+
+    export const onRatingChange=async(ItemId,newValue)=>{
+        try{
+            const data={
+                ItemId:ItemId,
+                newValue:newValue
+            }
+            return await axios.post(`${URL}/ratings`,data);
         }catch(error){
             console.log("Wrong data from frontend",error);
             return error.response;

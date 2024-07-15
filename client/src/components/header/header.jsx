@@ -7,7 +7,7 @@ import { useState } from "react";
 import DarkMode from "../DarkMode/DarkMode";
 
 const StyledHeader = styled(AppBar)`
-  background: linear-gradient(135deg, #2874f0, #030c32);
+  background: #4682b4;
   height: 55px;
   position:fixed;
   top:0;

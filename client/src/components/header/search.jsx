@@ -32,7 +32,7 @@ const ListWrapper = styled(List)`
   border-radius: 4px;
   background-color: #f6f6f6;
   color: #878787;
-  z-index: 10;
+  z-index: 1000;
 `;
 
 const Component = styled(ListItem)`

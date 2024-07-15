@@ -80,7 +80,7 @@ const SubmitButton = styled(Button)`
 `;
 
 const Cart = () => {
-  const {userId}=useContext(DataContext);
+  const {userId,setStripeSession}=useContext(DataContext);
   const { cartItems, loading } = useSelector((state) => state.cart);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
   
@@ -112,13 +112,12 @@ const Cart = () => {
    
     const session = await response.json();
    // window.open(session.url, "_blank");
+   
     const result = stripe.redirectToCheckout({
       sessionId: session.id,
-     
     });
-
+    
     let res=await CartToOrder(userId,cartItems);
-    toast.success("Order placed successfully");
 
   };
   return (

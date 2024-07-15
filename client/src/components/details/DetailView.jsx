@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MoonLoader from "react-spinners/MoonLoader";
 import { useParams } from "react-router-dom";
 import { getProductDetails } from "../../redux/actions/productActions";
-import { Box, Grid, Rating, styled } from "@mui/material";
+import { Box, Grid, styled } from "@mui/material";
 import ActionItem from "./ActionItem";
 import ProductDetail from "./ProductDetail";
 import "../PreLoader/loader.css";
@@ -63,7 +63,6 @@ const DetailView = () => {
             
             <RightContainer item lg={8} md={8} sm={12} xs={12}>
               <ProductDetail product={product} />
-              <Rating name="no-value" value={null} />
             </RightContainer>
           </Container>
         )

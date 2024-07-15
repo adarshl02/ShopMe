@@ -1,5 +1,8 @@
 import { Box, Button, Rating, Typography, styled } from "@mui/material";
 import ShareLocationIcon from '@mui/icons-material/ShareLocation';
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { onRatingChange } from "../../service/api";
 
 const Wrapper = styled(Box)`
     background: #fff;
@@ -17,6 +20,20 @@ const InnerWrapper=styled(Box)`
 `
 
 export const OrderList = ({ item }) => {
+
+  const [rating, setRating] = useState(item.rating || 0);
+
+  const handleRatingChange = async(event, newValue) => {
+    setRating(newValue);
+     let response= await onRatingChange(item.id, newValue); 
+     console.log(response)
+     if(response.status==200){
+      toast.success("Thanks for rating");  
+     }else{
+      toast.error("Something went wrong");
+     }
+  };
+
   return (
     <Wrapper>
       <Box style={{ padding: 10,display:'flex', justifyContent: 'center' }}>
@@ -40,7 +57,11 @@ export const OrderList = ({ item }) => {
         <Typography>Delivery Status : Delivered</Typography>
       </Box>
       <Box>
-      <Rating name="no-value" value={null} />
+      <Rating 
+            name={`rating-${item.id}`}
+            value={rating}
+            onChange={handleRatingChange}
+          />
       </Box>
       </InnerWrapper>
       <Box style={{margin:15}}>

@@ -1,5 +1,6 @@
 import {
   Box,
+  Rating,
   Table,
   TableBody,
   TableCell,
@@ -62,6 +63,16 @@ const ProductDetail = ({ product }) => {
           {product.price.discount}
         </Box>
       </Typography>
+      <Box>
+      <Typography style={{ marginTop: 5, color: "#878787", fontSize: 14 }}>
+        <b>{product.ratingCount}</b> Users Ordered and rated this product</Typography>
+        <Rating
+          name={`rating-${product.id}`}
+          value={product.rating}
+          readOnly
+          precision={0.5}
+        />
+      </Box>
       <Typography>Available offers</Typography>
       <SmallText>
         <Typography>

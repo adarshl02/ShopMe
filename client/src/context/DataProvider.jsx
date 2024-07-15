@@ -10,6 +10,7 @@ const DataProvider = ({ children }) => {
   const [account, setAccount] = useState(null); //This States are available everywhere
   const [userId, setUserId] = useState("");
   const[similarItemsId,setSimilarItemsId]=useState([])
+  
 
   useEffect(() => {
     axios
@@ -42,7 +43,7 @@ const DataProvider = ({ children }) => {
         userId,
         setUserId,
         similarItemsId,
-        setSimilarItemsId
+        setSimilarItemsId,
       }}
     >
       {children}

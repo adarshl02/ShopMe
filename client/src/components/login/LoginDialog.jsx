@@ -212,7 +212,7 @@ export default function LoginDialog({ open, setOpen }) {
   };
 
   const googleAuth=async()=>{
-     window.open(`${process.env.REACT_APP_BACKEND_URL}/api/auth/google`, "_self");  //1)
+     window.open(`${process.env.REACT_APP_BACKEND_URL}/auth/google`, "_self");  //1)
   }
 
   return (
