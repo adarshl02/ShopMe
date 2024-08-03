@@ -22,7 +22,7 @@ export const getProducts = async (req, res) => {
     const products = await Product.find({});
 
     // Store data in Redis (serialize to JSON string)
-    await redisClient.set('products', JSON.stringify(products), {
+    await redisConnectionClient.set('products', JSON.stringify(products), {
       EX: 3600 // Optional: set expiration to 1 hour
     });
     console.log("Data set in redis");
