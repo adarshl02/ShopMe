@@ -18,7 +18,8 @@ const userSchema=new mongoose.Schema({
         type : String,
          required:true,
         trim:true,
-        index:true,   //mongodb indexing laga de
+        index:true,   //When you set index: true for a field, MongoDB will create an index on that field.
+        //This tells MongoDB that this field will be frequently used in queries.
     },
     email:{
         type:String,

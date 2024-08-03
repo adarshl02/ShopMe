@@ -1,14 +1,38 @@
-
+import { connectRedis } from '../config/redis.config.js';
 import Product from './../Model/product-schema.js';
 
-export const getProducts=async(req,res)=>{
-    try{
-            const products =await Product.find({});
-            res.status(200).json(products);
-    }catch(error){
-        res.status(500).json({message:error.message});
+let redisConnectionClient;
+
+(async () => {                                            //imediately invoked function
+  redisConnectionClient = await connectRedis();
+})();
+
+export const getProducts = async (req, res) => {
+  try {
+    
+    // Check if data is already cached in Redis
+    const cachedData = await redisConnectionClient.get('products');
+    if (cachedData) {
+      console.log('Data fetched from Redis');
+      const products = JSON.parse(cachedData);
+      return res.status(200).json(products);
     }
-}
+
+    console.log("Data fetched from MongoDB");
+    const products = await Product.find({});
+
+    // Store data in Redis (serialize to JSON string)
+    await redisClient.set('products', JSON.stringify(products), {
+      EX: 3600 // Optional: set expiration to 1 hour
+    });
+    console.log("Data set in redis");
+
+    res.status(200).json(products);
+  } catch (error) {
+    console.error('Error in getProducts:', error);
+    res.status(500).json({ message: error.message });
+  }
+};
 
 
 export const getProductById=async(req,res)=>{
