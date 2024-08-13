@@ -1,0 +1,16 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PUBLIC_DIR=${PUBLIC_DIR}
+      - MONGODB_URL=${MONGODB_URL}
+      - SECRET=${SECRET}
+      - STRIPE_SECRET=${STRIPE_SECRET}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - URL=${URL}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - REDIS_URL=${REDIS_URL}

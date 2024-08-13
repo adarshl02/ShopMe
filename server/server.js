@@ -17,14 +17,14 @@ import passport from "passport";
 import flash from "express-flash";
 import ExpressMongoSanitize from "express-mongo-sanitize";
 import passportFunction from './passport.js'
+import ratelimit from "express-rate-limit"
+import xss from "xss-clean"
 const app = express();
 
 // app.use(helmet())
 //
-// app.use(ExpressMongoSanitize());  //data sanitization against malfunctioned data injection
-
-
-
+app.use(ExpressMongoSanitize());  //data sanitization against malfunctioned data injection
+app.use(xss());
 
 app.use(cors({
   credentials: true
@@ -71,6 +71,16 @@ app.use(passport.session());
 
 passportFunction()
 
+
+const limiter=ratelimit({
+  windowMs: 15 * 60 * 1000, //15 minutes
+  max: 100 ,
+  message: " Too many request from this IP , please try again after 15 min"
+  // limit each IP to 100 requests per `window` (here,
+  // 15 minutes)
+});
+
+app.use("/api", limiter);
 app.use("/api", Router);
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })

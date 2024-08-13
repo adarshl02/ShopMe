@@ -28,14 +28,16 @@ function App() {
           {/* 6_02 */}
              <Route path="/" element={<Home />} />                   
              <Route path="/product/:id" element={<DetailView/>} />  
-             <Route path='/cart' element={<Cart/>}/>1
+             <Route path='/cart' element={<Cart/>}/>
              <Route path='/myorders' element={<Orders/>}/>
              <Route path='/cancel' element={<Cancel/>}/>
           </Routes>
         </Box>
         <Footer/>
       </BrowserRouter>
+
       <ToastContainer/>
+
     </DataProvider>
     </header>
     </div>
