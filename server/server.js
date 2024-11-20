@@ -28,17 +28,15 @@ app.use(xss());
 
 app.use(cors({
   credentials: true
-}));//so that localhost 8000 and 3000 both works
+}));
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true })); //to remove whitespace in url(can ignore)
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
 
 const URL = process.env.MONGODB_URL;
 Connection(URL); //database connected successfully
 
 const store = MongoStore.create({
-  //connect-mongo
   mongoUrl: URL,
   crypto: {
     secret: process.env.SECRET,
@@ -95,12 +93,6 @@ app.use(express.static(process.env.PUBLIC_DIR));
 
 const PORT = process.env.PORT || 8000;
 
-
- if(process.env.NODE_ENV==='production'){
-   app.use('*',(req,res)=>{
-  res.sendFile(path.resolve(__dirname,'build','index.html'));
-})
- }
 
 // DefaultData();
 app.listen(PORT, () => {
