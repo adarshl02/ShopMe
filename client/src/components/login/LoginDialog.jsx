@@ -307,7 +307,7 @@ export default function LoginDialog({ open, setOpen }) {
 
               <CheckMe>
                 <Checkbox checked={checked} onChange={handleChange} />
-                By continuing, I agree to terms of Use & Privacy Policy
+                By continuing, I agree to terms of Use & Privacy Policy of Shopme
               </CheckMe>
               <LoginButton
                 onClick={signupUser}
