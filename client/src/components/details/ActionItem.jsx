@@ -37,9 +37,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 const ActionItem = ({ product }) => {
-  const { account, setAccount,userId } = useContext(DataContext);
+  const { account, userId } = useContext(DataContext);
   const [open, setOpen] = useState(false);
-  const [quantity, setQuantity] = useState(1);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -85,17 +84,17 @@ const ActionItem = ({ product }) => {
       });
 
       const session = await response.json();
-      const result = stripe.redirectToCheckout({
+      await stripe.redirectToCheckout({
         sessionId: session.id,
       });
-      let res=await CartToOrder(userId,productArray);
+      await CartToOrder(userId, productArray);
     }
   };
 
   return (
     <LeftContainer>
       <Box style={{ padding:' 15px 20px', border: "1px solid #f0f0f0" }}>
-        <Image src={product.url} />
+        <Image src={product.url} alt={product.title?.shortTitle || "Product"} />
       </Box>
       <StyledButton
         variant="contained"

@@ -42,7 +42,7 @@ const CartItem = ({ item }) => {
   return (
     <Component>
       <LeftComponent>
-        <img src={item.url} alt="img" style={{ height: 110, width: 110 }} />
+        <img src={item.url} alt={item.title?.shortTitle || "Cart item"} style={{ height: 110, width: 110 }} />
         <GroupedButton />
       </LeftComponent>
 
@@ -51,7 +51,7 @@ const CartItem = ({ item }) => {
         <SmallText>
           Seller : RetailNet
           <Box component="span">
-            <img src={fassured} style={{ width: 60, marginLeft: 10 }} />
+            <img src={fassured} alt="Fassured badge" style={{ width: 60, marginLeft: 10 }} />
           </Box>
         </SmallText>
 

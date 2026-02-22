@@ -47,7 +47,7 @@ const ProductDetail = ({ product }) => {
       <Typography style={{ marginTop: 5, color: "#878787", fontSize: 14 }}>
         8 Ratings & 1 Reviews
         <Box component="span">
-          <img src={fassured} style={{ width: 77, marginLeft: 20 }} />{" "}
+          <img src={fassured} alt="Fassured badge" style={{ width: 77, marginLeft: 20 }} />{" "}
         </Box>
       </Typography>
 
@@ -135,7 +135,7 @@ const ProductDetail = ({ product }) => {
 
           <Columntext>
             <TableCell colSpan={2}>
-              <img src={adURL} style={{ width: 390 }} alt="img" />
+              <img src={adURL} style={{ width: 390 }} alt="Promotion" />
             </TableCell>
           </Columntext>
 

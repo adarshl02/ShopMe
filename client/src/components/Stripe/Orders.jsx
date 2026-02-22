@@ -1,9 +1,8 @@
 import { Box, Grid, Typography, styled } from "@mui/material";
 import { OrderList } from "./OrderList";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Emptyorders from "./Emptyorders";
 
-import { useLocation } from "react-router-dom";
 import { DataContext } from "../../context/DataProvider";
 
 const Header = styled(Box)`
@@ -26,15 +25,8 @@ background: #fff;
 `;
 
 const Orders = () => {
-const location =useLocation();
 const { account} = useContext(DataContext);
 const orders = account ? account.orders : [];
-const [isLoading, setIsLoading] = useState(true); // Add loading state
-  
-
-useEffect(() => {
-  setIsLoading(false);
-}, []);
 
 
   return (

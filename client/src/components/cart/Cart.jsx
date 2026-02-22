@@ -17,7 +17,6 @@ import "../PreLoader/loader.css";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import { CartToOrder } from "../../service/api";
 import { DataContext } from "../../context/DataProvider";
-import { toast } from "react-toastify";
 
 
 const Container = styled(Grid)(({ theme }) => ({
@@ -80,7 +79,7 @@ const SubmitButton = styled(Button)`
 `;
 
 const Cart = () => {
-  const {userId,setStripeSession}=useContext(DataContext);
+  const { userId } = useContext(DataContext);
   const { cartItems, loading } = useSelector((state) => state.cart);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
   
@@ -113,11 +112,10 @@ const Cart = () => {
     const session = await response.json();
    // window.open(session.url, "_blank");
    
-    const result = stripe.redirectToCheckout({
+    await stripe.redirectToCheckout({
       sessionId: session.id,
     });
-    
-    let res=await CartToOrder(userId,cartItems);
+    await CartToOrder(userId, cartItems);
 
   };
   return (
@@ -139,7 +137,7 @@ const Cart = () => {
             </Header>
 
             {cartItems.map((item) => (
-              <CartItem item={item} key={item.id}  />
+              <CartItem item={item} key={item.id} />
             ))}
             <ButtonWrapper>
               <StyledButton onClick={buyNow}>Proceed to Checkout</StyledButton>

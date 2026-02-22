@@ -27,7 +27,7 @@ export const OrderList = ({ item }) => {
     setRating(newValue);
      let response= await onRatingChange(item.id, newValue); 
      console.log(response)
-     if(response.status==200){
+    if(response.status === 200){
       toast.success("Thanks for rating");  
      }else{
       toast.error("Something went wrong");
@@ -37,7 +37,7 @@ export const OrderList = ({ item }) => {
   return (
     <Wrapper>
       <Box style={{ padding: 10,display:'flex', justifyContent: 'center' }}>
-        <img src={item.url} alt="image" style={{ height: 90, width: 90 }} />
+        <img src={item.url} alt="Ordered product" style={{ height: 90, width: 90 }} />
       </Box>
       <Box style={{ padding: 10,display:'flex', justifyContent: 'center' }}>
         <Typography variant="h6" >{item.title.shortTitle}</Typography>

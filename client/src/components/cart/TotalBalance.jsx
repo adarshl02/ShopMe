@@ -1,5 +1,5 @@
 import { Box, Typography ,styled} from "@mui/material";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const Header=styled(Box)`
     padding:15px 24px;
@@ -36,20 +36,20 @@ const TotalBalance=({cartItems})=>{
     const [price,setPrice]=useState(0);
     const [discount,setDiscount]=useState(0);
 
-    useEffect(()=>{
-        totalAmount();
-    },[cartItems])
-
-    const totalAmount=()=>{
-        let price=0,discount=0;
-        cartItems.map(item=>{
-           price+=item.price.mrp;
-           discount+=(item.price.mrp-item.price.cost);
-    });
+    const totalAmount = useCallback(() => {
+        let price = 0;
+        let discount = 0;
+        cartItems.forEach((item) => {
+            price += item.price.mrp;
+            discount += (item.price.mrp - item.price.cost);
+        });
         setPrice(price);
         setDiscount(discount);
+    }, [cartItems]);
 
-    }
+    useEffect(() => {
+        totalAmount();
+    }, [totalAmount]);
     return (
        <Box>
         <Header>

@@ -38,7 +38,7 @@ const MidSlide=({products,title})=>{
             <Slide products={products} title={title}/>
             </LeftComponent>
             <RightComponent>
-                <img src={adURL} alt="image" style={{width:217}}/>
+                <img src={adURL} alt="Promotion" style={{width:217}}/>
             </RightComponent>
         </Component>
     )
