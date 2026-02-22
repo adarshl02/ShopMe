@@ -33,7 +33,7 @@ const DataProvider = ({ children }) => {
       .catch((e) => {
         console.log(e.response.data.message);
       });
-  }, []);
+  }, [dispatch]);
 
   return (
     <DataContext.Provider

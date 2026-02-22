@@ -1,6 +1,6 @@
 
 import {Box,Button,Checkbox, Dialog,TextField,Typography, styled,} from "@mui/material";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 import { DataContext } from "../../context/DataProvider";
 import { authenticateLogin, authenticateSignup } from "../../service/api";
 import { toast } from "react-toastify";
@@ -133,25 +133,25 @@ export default function LoginDialog({ open, setOpen }) {
   const [isLoginValid, setIsLoginValid] = useState(false);
 
   const dispatch = useDispatch();
-  const {setAccount,setUserId,setSimilarItemsId,similarItemsId} = useContext(DataContext);
+  const { setAccount, setUserId, setSimilarItemsId } = useContext(DataContext);
 
-  const validateSignupForm = () => {
+  const validateSignupForm = useCallback(() => {
     const { firstname, lastname, username, email, password, phone } = signup;
     return firstname && lastname && username && email && password && phone;
-  };
+  }, [signup]);
 
-  const validateLoginForm = () => {
+  const validateLoginForm = useCallback(() => {
     const { username, password } = login;
     return username && password;
-  };
+  }, [login]);
 
   useEffect(() => {
     setIsSignupValid(validateSignupForm());
-  }, [signup]);
+  }, [validateSignupForm]);
 
   useEffect(() => {
     setIsLoginValid(validateLoginForm());
-  }, [login]);
+  }, [validateLoginForm]);
 
 
   const handleClose = () => {

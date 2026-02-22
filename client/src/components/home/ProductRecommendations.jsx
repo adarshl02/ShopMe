@@ -12,7 +12,7 @@ const ProductRecommendations = ({products=[]}) => {
       ? products.filter(product => similarItemsId.includes(product.id))
       : [];
     setCallouts(updatedCallouts);
-  }, [similarItemsId]);
+  }, [similarItemsId, products]);
   
 
   return (

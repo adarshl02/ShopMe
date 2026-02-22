@@ -47,7 +47,7 @@ export const authenticateLogin=async (data)=>{
     export const logout = async () => {
 
         try {
-            const { data } = await axios.get(`${URL}/logout`, { withCredentials: true })
+            return await axios.get(`${URL}/logout`, { withCredentials: true })
         } catch (error) {
             throw error
         }
