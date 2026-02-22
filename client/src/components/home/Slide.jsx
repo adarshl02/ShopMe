@@ -101,7 +101,10 @@ const Slide = ({ products = [], title }) => { // Default to empty array
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
-        { Array.isArray(products) && products.map((product) => (
+        {Array.isArray(products) &&
+          products
+            .filter((product) => product && product.title)
+            .map((product) => (
           <Link to={`product/${product.id}`} style={{ textDecoration: 'none' }} key={product.id}>
             <Box
               textAlign="center"
@@ -109,7 +112,7 @@ const Slide = ({ products = [], title }) => { // Default to empty array
             >
               <Image src={product.url} alt="product" />
               <Text style={{ fontWeight: 600, color: "#212121" }}>
-                {product.title.shortTitle}
+                {product.title?.shortTitle || ""}
               </Text>
               <Text style={{ color: "green" }}>{product.discount} </Text>
               <Text style={{ color: "#212121", opacity: "0.6" }}>
