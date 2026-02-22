@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL='/api';         //our react app is on 3000 but but are routing to 8000/signup
+const URL= process.env.REACT_APP_BACKEND_URL ;         //our react app is on 3000 but but are routing to 8000/signup
 
 
 
