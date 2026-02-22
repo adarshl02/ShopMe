@@ -19,16 +19,19 @@ import ExpressMongoSanitize from "express-mongo-sanitize";
 import passportFunction from './passport.js'
 import ratelimit from "express-rate-limit"
 import xss from "xss-clean"
+import morgan from "morgan"
 const app = express();
 
 // app.use(helmet())
-//
+app.use(morgan("dev"));
 app.use(ExpressMongoSanitize());  //data sanitization against malfunctioned data injection
 app.use(xss());
 
 app.use(cors({
   credentials: true
-}));//so that localhost 8000 and 3000 both works
+}));
+
+
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true })); //to remove whitespace in url(can ignore)
 const __filename = fileURLToPath(import.meta.url);
@@ -80,6 +83,10 @@ const limiter=ratelimit({
   // 15 minutes)
 });
 
+app.get("/",(req,res)=>{
+  res.status(200).json("Server is running!");
+})
+
 app.use("/api", limiter);
 app.use("/api", Router);
 app.get('/auth/google',
@@ -91,16 +98,16 @@ app.get('/auth/google/callback',passport.authenticate('google',{    //4) final
   failureRedirect:process.env.URL,
   })
 )
-app.use(express.static(process.env.PUBLIC_DIR));
+// app.use(express.static(process.env.PUBLIC_DIR));
 
 const PORT = process.env.PORT || 8000;
 
 
- if(process.env.NODE_ENV==='production'){
-   app.use('*',(req,res)=>{
-  res.sendFile(path.resolve(__dirname,'build','index.html'));
-})
- }
+//  if(process.env.NODE_ENV==='production'){
+//    app.use('*',(req,res)=>{
+//   res.sendFile(path.resolve(__dirname,'build','index.html'));
+// })
+//  }
 
 // DefaultData();
 app.listen(PORT, () => {

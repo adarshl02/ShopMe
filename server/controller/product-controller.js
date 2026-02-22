@@ -1,31 +1,29 @@
-import { connectRedis } from '../config/redis.config.js';
+// import { connectRedis } from '../config/redis.config.js';
 import Product from './../Model/product-schema.js';
 
-let redisConnectionClient;
+// let redisConnectionClient;
 
-(async () => {                                            //imediately invoked function
-  redisConnectionClient = await connectRedis();
-})();
+// (async () => {                                            //imediately invoked function
+//   redisConnectionClient = await connectRedis();
+// })();
 
 export const getProducts = async (req, res) => {
   try {
     
     // Check if data is already cached in Redis
-    const cachedData = await redisConnectionClient.get('products');
-    if (cachedData) {
-      console.log('Data fetched from Redis');
-      const products = JSON.parse(cachedData);
-      return res.status(200).json(products);
-    }
-
-    console.log("Data fetched from MongoDB");
+    // const cachedData = await redisConnectionClient.get('products');
+    // if (cachedData) {
+    //   console.log('Data fetched from Redis');
+    //   const products = JSON.parse(cachedData);
+    //   return res.status(200).json(products);
+    // }
     const products = await Product.find({});
 
     // Store data in Redis (serialize to JSON string)
-    await redisConnectionClient.set('products', JSON.stringify(products), {
-      EX: 3600 // Optional: set expiration to 1 hour
-    });
-    console.log("Data set in redis");
+   // await redisConnectionClient.set('products', JSON.stringify(products), {
+  //    EX: 3600 // Optional: set expiration to 1 hour
+   // });
+  //  console.log("Data set in redis");
 
     res.status(200).json(products);
   } catch (error) {
